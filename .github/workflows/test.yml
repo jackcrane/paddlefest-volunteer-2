@@ -13,49 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Spin up test environment
+      - name: Build and test
         run: |
-          echo "Building test environment"
           docker-compose -f docker-compose.test.yml build
-          echo "Environment build complete"
-      - name: View logs of database service
-        run: |
-          echo "Viewing logs of database service"
-          docker-compose -f docker-compose.test.yml logs -f database
-          echo "Logs complete"
-      - name: Check if the database service is running
-        run: |
-          echo "Checking if the database service is running"
-          docker-compose -f docker-compose.test.yml ps | grep database
-          echo "Check complete"
-      - name: Check status of database service
-        run: |
-          echo "Checking status of database service"
-          docker-compose -f docker-compose.test.yml ps
-          echo "Check complete"
-      - name: Check connection of server to database
-        run: |
-          echo "Checking connection of server to database"
-          docker-compose -f docker-compose.test.yml exec server bash -c 'nc -z database 3306'
-          echo "Check complete"
-      - name: Check environment variable of server
-        run: |
-          echo "Checking environment variable of server"
-          docker-compose -f docker-compose.test.yml exec server env
-          echo "Check complete"
-      - name: Check health of database service
-        run: |
-          echo "Checking health of database service"
-          docker-compose -f docker-compose.test.yml exec database mysqladmin ping --silent
-          echo "Check complete"
-      - name: Build database
-        run: |
-          echo "Building database"
           docker-compose -f docker-compose.test.yml run --rm server npx prisma migrate reset --force test && npx prisma migrate dev --name test --force
-          echo "Database build complete"
-      - name: Run tests
-        run: |
-          echo "Running tests"
           docker-compose -f docker-compose.test.yml run --rm server yarn jest -i
-          echo "Tests complete"
-        continue-on-error: true
