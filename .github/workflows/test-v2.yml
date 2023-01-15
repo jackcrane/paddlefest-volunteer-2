@@ -30,5 +30,7 @@ jobs:
           done
 
       - name: Test
+        env:
+          DATABASE_URL: ${{ job.services.mariadb.ports[3306] }}
         run: |
           npx prisma migrate reset --force test && npx prisma migrate dev --name test --force
