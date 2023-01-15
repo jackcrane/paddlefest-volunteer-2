@@ -6,8 +6,7 @@ services:
       context: "."
       target: base
     environment:
-      SERVER_DATABASE_NAME: paddlefest_volunteer
-      DATABASE_URL: mysql://root:root@database:3306/paddlefest_volunteer?schema=public
+      DATABASE_URL: $$DATABASE_URL
     ports:
       - 9999:80
     volumes:
@@ -15,23 +14,7 @@ services:
       - ./package.json:/usr/src/app/package.json
     networks:
       - test_vm
-    depends_on:
-      - database
 
-  database:
-    image: mysql:5.7
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PORT=3306
-    volumes:
-      - database:/var/lib/mysql
-    expose:
-      - 3306
-    ports:
-      - 3306:3306
-    networks:
-      - test_vm
 volumes:
   database:
 networks:
