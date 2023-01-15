@@ -27,9 +27,9 @@ services:
     volumes:
       - database:/var/lib/mysql
     expose:
-      - 3307
+      - 3306
     ports:
-      - 3307:3306
+      - 3306:3306
     networks:
       - test_vm
 volumes:
