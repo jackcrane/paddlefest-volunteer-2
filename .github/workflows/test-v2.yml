@@ -31,6 +31,9 @@ jobs:
 
       - name: Test
         env:
-          DATABASE_URL: mysql://user:password@127.0.0.1:3306/paddlefest_volunteer
+          DATABASE_URL: mysql://user:password@127.0.0.1:${{ job.services.mariadb.ports[3306] }}/paddlefest_volunteer
         run: |
+          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+            sleep 1
+          done
           npx prisma migrate reset --force test && npx prisma migrate dev --name test --force
