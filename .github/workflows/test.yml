@@ -13,14 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Print PWD
-        run: pwd
       - name: Spin up test environment
         run: |
           docker-compose -f docker-compose.test.yml build
-      - name: Build database
-        run: |
           docker-compose -f docker-compose.test.yml run --rm server npx prisma migrate reset --force test && npx prisma migrate dev --name test --force
+      # - name: Build database
+      #   run: |
       - name: Run tests
         run: |
           docker-compose -f docker-compose.test.yml run --rm server yarn jest -i
