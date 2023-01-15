@@ -14,7 +14,7 @@ jobs:
         env:
           MYSQL_USER: user
           MYSQL_PASSWORD: password
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: paddlefest_volunteer
           MYSQL_ROOT_PASSWORD: password
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
@@ -29,14 +29,8 @@ jobs:
             sleep 1
           done
 
-      - name: "Echo database URL"
-        env:
-          DATABASE_URL: ${{ job.services.mariadb }}
-        run: |
-          echo $DATABASE_URL
-
       - name: Test
         env:
-          DATABASE_URL: ${{ job.services.mariadb.ports[3306] }}
+          DATABASE_URL: mysql://user:password@127.0.0.1:3306/paddlefest_volunteer
         run: |
           npx prisma migrate reset --force test && npx prisma migrate dev --name test --force
