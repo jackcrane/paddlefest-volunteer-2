@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Volunteers {
+  id         String             @id @default(uuid())
+  name       String             @db.VarChar(255)
+  email      String             @unique @db.VarChar(255)
+  phone      String             @db.VarChar(255)
+  shirtSize  String?             @db.VarChar(36)
+  shirtSizeR ShirtSizes?         @relation(fields: [shirtSize], references: [id])
+  referral   String             @db.VarChar(255)
+  shifts     VolunteersShifts[]
+}
+
+model ShirtSizes {
+  id         String       @id @default(uuid())
+  name       String       @db.VarChar(255)
+  volunteers Volunteers[]
+}
+
+model Locations {
+  id      String   @id @default(uuid())
+  name    String   @db.VarChar(255)
+  address String   @db.VarChar(255)
+  shifts  Shifts[]
+}
+
+model Shifts {
+  id           String             @id @default(uuid())
+  date         DateTime
+  startTime    DateTime
+  endTime      DateTime
+  name         String             @db.VarChar(255)
+  description  String             @db.VarChar(255)
+  restrictions Restrictions[]
+  locationId   String             @db.VarChar(36)
+  location     Locations          @relation(fields: [locationId], references: [id])
+  volunteers   VolunteersShifts[]
+}
+
+model Restrictions {
+  id      String @id @default(uuid())
+  name    String @db.VarChar(255)
+  shiftId String @db.VarChar(36)
+  shift   Shifts @relation(fields: [shiftId], references: [id])
+}
+
+model VolunteersShifts {
+  id          String     @id @default(uuid())
+  volunteerId String     @db.VarChar(36)
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+  shiftId     String     @db.VarChar(36)
+  shift       Shifts     @relation(fields: [shiftId], references: [id])
+}

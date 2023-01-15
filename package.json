@@ -1,0 +1,31 @@
+{
+  "name": "paddlefest-volunteer-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "npx prisma format && npx prisma migrate dev && npx prisma generate",
+    "test": "npm run test:1:cache && npm run test:run",
+    "test:full": "npm run test:1 && npm run test:2 && npm run test:run",
+    "test:run": "docker-compose -f docker-compose.test.yml run --rm server yarn jest -i",
+    "test:1": "docker-compose -f docker-compose.test.yml build --no-cache",
+    "test:1:cache": "docker-compose -f docker-compose.test.yml build",
+    "test:2": "docker-compose -f docker-compose.test.yml run --rm server npx prisma migrate reset --force test && npx prisma migrate dev --name test --force"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.8.1",
+    "uuid": "^9.0.0"
+  },
+  "imports": {
+    "#test-utils/*": "/test-utils/*"
+  }
+}
