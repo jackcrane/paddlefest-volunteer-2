@@ -18,6 +18,16 @@ jobs:
           echo "Building test environment"
           docker-compose -f docker-compose.test.yml build
           echo "Environment build complete"
+      - name: View logs of database service
+        run: |
+          echo "Viewing logs of database service"
+          docker-compose -f docker-compose.test.yml logs -f database
+          echo "Logs complete"
+      - name: Check if the database service is running
+        run: |
+          echo "Checking if the database service is running"
+          docker-compose -f docker-compose.test.yml ps | grep database
+          echo "Check complete"
       - name: Check status of database service
         run: |
           echo "Checking status of database service"
