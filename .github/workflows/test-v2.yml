@@ -29,6 +29,12 @@ jobs:
             sleep 1
           done
 
+      - name: "Echo database URL"
+        env:
+          DATABASE_URL: ${{ job.services.mariadb }}
+        run: |
+          echo $DATABASE_URL
+
       - name: Test
         env:
           DATABASE_URL: ${{ job.services.mariadb.ports[3306] }}
