@@ -40,4 +40,8 @@ describe("Creating user records in the database", () => {
       })
     ).rejects.toThrowError();
   });
+
+  it("Will fail", () => {
+    expect(1).toBe(2);
+  });
 });
