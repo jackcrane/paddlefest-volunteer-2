@@ -7,7 +7,7 @@ services:
       target: base
     environment:
       SERVER_DATABASE_NAME: paddlefest_volunteer
-      PRISMA_DATABASE_URL: mysql://root:root@database:3306/paddlefest_volunteer?schema=public
+      DATABASE_URL: mysql://root:root@database:3306/paddlefest_volunteer?schema=public
     ports:
       - 9999:80
     volumes:
