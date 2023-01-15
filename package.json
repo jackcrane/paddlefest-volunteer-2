@@ -11,7 +11,7 @@
     "test:1": "docker-compose -f docker-compose.test.yml build --no-cache",
     "test:1:cache": "docker-compose -f docker-compose.test.yml build",
     "test:2": "docker-compose -f docker-compose.test.yml run --rm server npx prisma migrate reset --force test && npx prisma migrate dev --name test --force",
-    "test:migrate:dockerless": "npx prisma migrate reset --force test && npx migrate dev --name test --force",
+    "test:migrate:dockerless": "npx migrate dev --name test --force",
     "test:run:dockerless": "yarn jest -i"
   },
   "keywords": [],
