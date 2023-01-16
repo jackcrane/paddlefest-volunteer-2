@@ -1,0 +1,15 @@
+{
+	"extends": "eslint:recommended",
+	"parser": "@babel/eslint-parser",
+	"rules": {
+		"no-console": "warn",
+		"no-unused-vars": "error",
+		"no-undef": "error",
+		"no-use-before-define": "error"
+	},
+	"env": {
+		"jest": true,
+		"browser": true,
+		"node": true
+	}
+}

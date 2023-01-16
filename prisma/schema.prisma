@@ -8,19 +8,20 @@ datasource db {
 }
 
 model Volunteers {
-  id         String             @id @default(uuid())
-  name       String             @db.VarChar(255)
-  email      String             @unique @db.VarChar(255)
-  phone      String             @db.VarChar(255)
-  shirtSize  String?             @db.VarChar(36)
-  shirtSizeR ShirtSizes?         @relation(fields: [shirtSize], references: [id])
-  referral   String             @db.VarChar(255)
-  shifts     VolunteersShifts[]
+  id          String             @id @default(uuid())
+  name        String             @db.VarChar(255)
+  email       String             @unique @db.VarChar(255)
+  phone       String             @db.VarChar(255)
+  shirtSizeId String?            @db.VarChar(36)
+  shirtSize   ShirtSizes?        @relation(fields: [shirtSizeId], references: [id])
+  referral    String             @db.VarChar(255)
+  shifts      VolunteersShifts[]
 }
 
 model ShirtSizes {
   id         String       @id @default(uuid())
-  name       String       @db.VarChar(255)
+  name       String       @db.VarChar(56)
+  slug       String       @unique @db.VarChar(8)
   volunteers Volunteers[]
 }
 
@@ -38,17 +39,17 @@ model Shifts {
   endTime      DateTime
   name         String             @db.VarChar(255)
   description  String             @db.VarChar(255)
-  restrictions Restrictions[]
-  locationId   String             @db.VarChar(36)
-  location     Locations          @relation(fields: [locationId], references: [id])
+  restrictions Restrictions[]  
+  locationId   String?            @db.VarChar(36)
+  location     Locations?         @relation(fields: [locationId], references: [id])
   volunteers   VolunteersShifts[]
 }
 
 model Restrictions {
-  id      String @id @default(uuid())
-  name    String @db.VarChar(255)
-  shiftId String @db.VarChar(36)
-  shift   Shifts @relation(fields: [shiftId], references: [id])
+  id      String  @id @default(uuid())
+  name    String  @db.VarChar(255)
+  shiftId String? @db.VarChar(36)
+  shift   Shifts? @relation(fields: [shiftId], references: [id])
 }
 
 model VolunteersShifts {
