@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"migrate": "npx prisma format && npx prisma migrate dev && npx prisma generate",
+		"migrate": "npx prisma format && npx prisma migrate dev --name test && npx prisma generate",
 		"migrate:dockerless": "npx prisma migrate dev --name test --force",
 		"test:run:dockerless": "yarn jest -i",
 		"test": "jest",

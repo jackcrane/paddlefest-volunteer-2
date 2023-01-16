@@ -39,7 +39,7 @@ model Shifts {
   endTime      DateTime
   name         String             @db.VarChar(255)
   description  String             @db.VarChar(255)
-  restrictions Restrictions[]  
+  restrictions Restrictions[]
   locationId   String?            @db.VarChar(36)
   location     Locations?         @relation(fields: [locationId], references: [id])
   volunteers   VolunteersShifts[]
