@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: npm run test:migrate:dockerless
+      - run: npm run migrate:dockerless
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - run: npx prisma generate
