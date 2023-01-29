@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 /**
  * @function VOLUNTEER
  * @description Returns a volunteer object with properties with given issues. Leave variants empty to return a volunteer object with no issues.
@@ -17,29 +19,29 @@
  *  - referral {string|null|undefined} - the referral source of the volunteer
  */
 export const VOLUNTEER = (variants = []) => {
-  // Holy terinaries batman!
-  return {
-    name: variants.includes("name-null")
-      ? null
-      : variants.includes("name-undefined")
-      ? undefined
-      : "Jack Crane",
-    email: variants.includes("email-null")
-      ? null
-      : variants.includes("email-undefined")
-      ? undefined
-      : "email@example.com",
-    phone: variants.includes("phone-null")
-      ? null
-      : variants.includes("phone-undefined")
-      ? undefined
-      : "1234567890",
-    referral: variants.includes("referral-null")
-      ? null
-      : variants.includes("referral-undefined")
-      ? undefined
-      : "referral",
-  };
+	// Holy terinaries batman!
+	return {
+		name: variants.includes('name-null')
+			? null
+			: variants.includes('name-undefined')
+			? undefined
+			: 'Jack Crane',
+		email: variants.includes('email-null')
+			? null
+			: variants.includes('email-undefined')
+			? undefined
+			: `${uuidv4()}@example.com`,
+		phone: variants.includes('phone-null')
+			? null
+			: variants.includes('phone-undefined')
+			? undefined
+			: '1234567890',
+		referral: variants.includes('referral-null')
+			? null
+			: variants.includes('referral-undefined')
+			? undefined
+			: 'referral',
+	};
 };
 
 /**
@@ -47,10 +49,10 @@ export const VOLUNTEER = (variants = []) => {
  * @description Returns a shirt size object
  */
 export const SHIRT_SIZE = () => {
-  return {
-    name: "Small",
-    slug: "small",
-  };
+	return {
+		name: 'Small',
+		slug: 'small',
+	};
 };
 
 /**
@@ -75,33 +77,33 @@ export const SHIRT_SIZE = () => {
  * - description {string|null|undefined} - the description of the shift
  */
 export const SHIFT = (variants = []) => {
-  return {
-    name: variants.includes("name-null")
-      ? null
-      : variants.includes("name-undefined")
-      ? undefined
-      : "Shift 1",
-    date: variants.includes("date-null")
-      ? null
-      : variants.includes("date-undefined")
-      ? undefined
-      : new Date(),
-    startTime: variants.includes("startTime-null")
-      ? null
-      : variants.includes("startTime-undefined")
-      ? undefined
-      : new Date(),
-    endTime: variants.includes("endTime-null")
-      ? null
-      : variants.includes("endTime-undefined")
-      ? undefined
-      : new Date(),
-    description: variants.includes("description-null")
-      ? null
-      : variants.includes("description-undefined")
-      ? undefined
-      : "Description",
-  };
+	return {
+		name: variants.includes('name-null')
+			? null
+			: variants.includes('name-undefined')
+			? undefined
+			: 'Shift 1',
+		date: variants.includes('date-null')
+			? null
+			: variants.includes('date-undefined')
+			? undefined
+			: new Date(),
+		startTime: variants.includes('startTime-null')
+			? null
+			: variants.includes('startTime-undefined')
+			? undefined
+			: new Date(),
+		endTime: variants.includes('endTime-null')
+			? null
+			: variants.includes('endTime-undefined')
+			? undefined
+			: new Date(),
+		description: variants.includes('description-null')
+			? null
+			: variants.includes('description-undefined')
+			? undefined
+			: 'Description',
+	};
 };
 
 /**
@@ -111,7 +113,7 @@ export const SHIFT = (variants = []) => {
  * - name {string} - the name of the restriction
  */
 export const RESTRICTION = () => {
-  return {
-    name: "Must be 21+",
-  };
+	return {
+		name: 'Must be 21+',
+	};
 };

@@ -3,11 +3,12 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"migrate": "npx prisma format && npx prisma migrate dev --name test && npx prisma generate",
 		"migrate:dockerless": "npx prisma migrate dev --name test --force",
 		"test:run:dockerless": "yarn jest -i",
-		"test": "jest",
+		"test": "jest --coverage",
 		"lint": "eslint . --ext .js,.ts"
 	},
 	"keywords": [],
@@ -24,9 +25,11 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.8.1",
+		"eslint-plugin-import": "^2.27.5",
 		"uuid": "^9.0.0"
 	},
 	"imports": {
-		"#test-utils/*": "/test-utils/*"
+		"#test-utils/*": "/test-utils/*",
+		"#util/*": "./util/*"
 	}
 }

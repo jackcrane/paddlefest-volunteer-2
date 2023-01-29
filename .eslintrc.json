@@ -5,11 +5,13 @@
 		"no-console": "warn",
 		"no-unused-vars": "error",
 		"no-undef": "error",
-		"no-use-before-define": "error"
+		"no-use-before-define": "error",
+		"import/no-default-export": "error"
 	},
 	"env": {
 		"jest": true,
 		"browser": true,
 		"node": true
-	}
+	},
+	"plugins": ["import"]
 }

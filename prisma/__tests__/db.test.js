@@ -16,10 +16,12 @@ afterAll(async () => {
 beforeEach(async () => {
 	await prisma.volunteers.deleteMany();
 	await prisma.shirtSizes.deleteMany();
+	await prisma.shifts.deleteMany();
 });
 afterEach(async () => {
 	await prisma.volunteers.deleteMany();
 	await prisma.shirtSizes.deleteMany();
+	await prisma.shifts.deleteMany();
 });
 
 describe('Creating user records in the database', () => {
