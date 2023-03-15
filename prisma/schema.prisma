@@ -26,30 +26,39 @@ model ShirtSizes {
 }
 
 model Locations {
-  id      String   @id @default(uuid())
-  name    String   @db.VarChar(255)
-  address String   @db.VarChar(255)
-  shifts  Shifts[]
+  id      String @id @default(uuid())
+  name    String @db.VarChar(255)
+  address String @db.VarChar(255)
+  slug    String @unique @db.VarChar(255)
+  jobs    Jobs[]
+}
+
+model Jobs {
+  id           String         @id @default(uuid())
+  name         String         @db.VarChar(255)
+  description  String         @db.VarChar(255)
+  locationId   String?        @db.VarChar(36)
+  location     Locations?     @relation(fields: [locationId], references: [id])
+  shifts       Shifts[]
+  restrictions Restrictions[]
 }
 
 model Shifts {
-  id           String             @id @default(uuid())
-  date         DateTime
-  startTime    DateTime
-  endTime      DateTime
-  name         String             @db.VarChar(255)
-  description  String             @db.VarChar(255)
-  restrictions Restrictions[]
-  locationId   String?            @db.VarChar(36)
-  location     Locations?         @relation(fields: [locationId], references: [id])
-  volunteers   VolunteersShifts[]
+  id         String             @id @default(uuid())
+  startTime  DateTime
+  endTime    DateTime
+  capacity   Int
+  volunteers VolunteersShifts[]
+  jobId      String?            @db.VarChar(36)
+  job        Jobs?              @relation(fields: [jobId], references: [id])
 }
 
 model Restrictions {
-  id      String  @id @default(uuid())
-  name    String  @db.VarChar(255)
-  shiftId String? @db.VarChar(36)
-  shift   Shifts? @relation(fields: [shiftId], references: [id])
+  id    String  @id @default(uuid())
+  name  String  @db.VarChar(255)
+  slug  String  @unique @db.VarChar(255)
+  jobId String? @db.VarChar(36)
+  job   Jobs?   @relation(fields: [jobId], references: [id])
 }
 
 model VolunteersShifts {

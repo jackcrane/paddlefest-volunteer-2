@@ -1,0 +1,64 @@
+$red: #fa1750;
+$green: #00ae95;
+
+.input__container {
+  margin-top: 20px;
+  position: relative;
+  max-width: 600px;
+  margin-bottom: 30px;
+  .label {
+    transition: 0.3s;
+    position: absolute;
+    top: 0%;
+    left: 15px;
+    transform: translate(0, -50%);
+    cursor: text;
+    background: white;
+    padding: 0 5px;
+    pointer-events: none;
+  }
+  &.empty {
+    .label {
+      top: 23px;
+      left: 15px;
+      color: darkgrey;
+      background: transparent;
+      padding: 0;
+    }
+    .invalid {
+      border-color: black;
+    }
+  }
+  .input {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    transition: border-color 0.3s;
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    &:invalid,
+    &.invalid {
+      border-color: $red;
+    }
+  }
+  .invalidText {
+    position: absolute;
+    right: 25px;
+    bottom: -19px;
+    background: white;
+    padding: 5px;
+    border: 2px solid $red;
+    border-radius: 4px;
+  }
+  .helperText {
+    position: absolute;
+    left: 0px;
+    bottom: -28px;
+    padding: 5px;
+    border-radius: 4px;
+  }
+}

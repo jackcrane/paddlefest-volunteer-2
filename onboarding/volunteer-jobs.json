@@ -1,0 +1,1400 @@
+[{
+  "_id": {
+    "$oid": "629a8f0e5634feafc135eea9"
+  },
+  "title": "Registration",
+  "description": "Help check in paddlers",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:00:00.000Z",
+      "end": "2022-08-05T21:00:00.000Z",
+      "_id": {
+        "$oid": "629a8f0e5634feafc135eea6"
+      },
+      "max": 5,
+      "volunteers": [
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        {
+          "$oid": "62cb1d37e6f40049991e20fb"
+        },
+        {
+          "$oid": "62cf18c5231a11a9840b5d2c"
+        },
+        {
+          "$oid": "62e802b0167f6eeff271f6a0"
+        }
+      ]
+    },
+    {
+      "start": "2022-08-05T21:00:00.000Z",
+      "end": "2022-08-05T23:00:00.000Z",
+      "_id": {
+        "$oid": "629a8f0e5634feafc135eea7"
+      },
+      "max": 5,
+      "volunteers": [
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        {
+          "$oid": "62bdf621b0b51447f7175e53"
+        },
+        {
+          "$oid": "62cb1e0888c12991131dd2b6"
+        },
+        "62cddec8be93ff0dfd03ace2"
+      ]
+    },
+    {
+      "start": "2022-08-05T23:00:00.000Z",
+      "end": "2022-08-06T01:00:00.000Z",
+      "_id": {
+        "$oid": "629a8f0e5634feafc135eea8"
+      },
+      "max": 5,
+      "volunteers": [
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        "62cddec8be93ff0dfd03ace2",
+        {
+          "$oid": "62cf18c5231a11a9840b5d2c"
+        },
+        {
+          "$oid": "62ebfc933bf6151bffc27c93"
+        }
+      ]
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654296334224"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a8fbb5634feafc135eead"
+  },
+  "title": "Raffle",
+  "description": "Ticket sales",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a8fbb5634feafc135eeaa"
+      },
+      "max": 3,
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        }
+      ]
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a8fbb5634feafc135eeab"
+      },
+      "max": 3,
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        },
+        "62e1b553080691b6c6684588"
+      ]
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a8fbb5634feafc135eeac"
+      },
+      "max": 3,
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        },
+        "62bf18b7b0b51447f7175e54"
+      ]
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654296507846"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a90335634feafc135eeb1"
+  },
+  "title": "Beer",
+  "description": "Beer sales",
+  "restrictions": [
+    "Must be over 21"
+  ],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a90335634feafc135eeae"
+      },
+      "max": 8,
+      "volunteers": [
+        {
+          "$oid": "62b600c0da4dff96795f7ff4"
+        },
+        {
+          "$oid": "62bb197162383d9fc1edc9cc"
+        },
+        {
+          "$oid": "62c5bd32b0b51447f7175e5a"
+        },
+        {
+          "$oid": "62d9d7462828b4336986cb91"
+        },
+        {
+          "$oid": "62ea1a327b190c1ad006b9eb"
+        },
+        {
+          "$oid": "62ebc1cf7b190c1ad006b9ee"
+        }
+      ]
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a90335634feafc135eeaf"
+      },
+      "max": 8,
+      "volunteers": [
+        {
+          "$oid": "62b600c0da4dff96795f7ff4"
+        },
+        {
+          "$oid": "62bf707cb0b51447f7175e57"
+        },
+        {
+          "$oid": "62c598ff3d2dd5e923f52b26"
+        },
+        {
+          "$oid": "62c5bd32b0b51447f7175e5a"
+        },
+        {
+          "$oid": "62c70eda3962061dce9e275e"
+        },
+        {
+          "$oid": "62d08db15d754183db1a9fee"
+        },
+        {
+          "$oid": "62d76f5eee901c459f82067c"
+        },
+        {
+          "$oid": "62d8b4c75f82b2ba0e8aade3"
+        }
+      ]
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a90335634feafc135eeb0"
+      },
+      "max": 8,
+      "volunteers": [
+        {
+          "$oid": "62b600c0da4dff96795f7ff4"
+        },
+        {
+          "$oid": "62c598ff3d2dd5e923f52b26"
+        },
+        {
+          "$oid": "62c5bd32b0b51447f7175e5a"
+        },
+        "62d76f5eee901c459f82067c"
+      ]
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654296627802"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a90d704d47aa502167652"
+  },
+  "title": "Merch",
+  "description": "Sell Paddlefest merchandise",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a90d704d47aa502167650"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        "62bb31580502f98c228635f8"
+      ],
+      "max": 3
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a90d704d47aa502167651"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        {
+          "$oid": "62bb738d52420c4408778f84"
+        },
+        {
+          "$oid": "62e1b5bd7b190c1ad006b9de"
+        },
+        "62db52801906de1c4cc8f3a2"
+      ],
+      "max": 3
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a92739a8f507fc38344a9"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        {
+          "$oid": "62eb4c4a56b210bfb8b50f8a"
+        },
+        {
+          "$oid": "62ed97d73b3fced32bd8f226"
+        }
+      ],
+      "max": 3
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654296791491"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a930b94c8207a4adf532b"
+  },
+  "title": "General Help",
+  "description": "Set up and help out as needed (If you don't care what to do, select this)",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a930b94c8207a4adf5328"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5c4e40c5d254b83b6bb35"
+        },
+        {
+          "$oid": "62b5df112eb5d69bb0097895"
+        },
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62bb21620502f98c228635f7"
+        },
+        {
+          "$oid": "62c593733d2dd5e923f52b25"
+        },
+        {
+          "$oid": "62d037696a5239d428242298"
+        },
+        {
+          "$oid": "62deaa8c5c41884db60c2006"
+        },
+        {
+          "$oid": "62e8498f7b190c1ad006b9e5"
+        },
+        {
+          "$oid": "62e9090c7b190c1ad006b9e6"
+        },
+        {
+          "$oid": "62ec4cb26f39cedf654da633"
+        }
+      ],
+      "max": "12"
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a930b94c8207a4adf5329"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5c4e40c5d254b83b6bb35"
+        },
+        {
+          "$oid": "62b5df112eb5d69bb0097895"
+        },
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62bb21620502f98c228635f7"
+        },
+        {
+          "$oid": "62bdbfd752420c4408778f88"
+        },
+        {
+          "$oid": "62c593733d2dd5e923f52b25"
+        },
+        {
+          "$oid": "62d037696a5239d428242298"
+        },
+        {
+          "$oid": "62deaa8c5c41884db60c2006"
+        },
+        "62dd3d9e673442e86ba1e371",
+        "62d04a5044778224c524cae0",
+        {
+          "$oid": "62ec4cb26f39cedf654da633"
+        }
+      ],
+      "max": "12"
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a930b94c8207a4adf532a"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62bb21620502f98c228635f7"
+        },
+        {
+          "$oid": "62bda297b0b51447f7175e4f"
+        },
+        {
+          "$oid": "62c593733d2dd5e923f52b25"
+        },
+        {
+          "$oid": "62d037696a5239d428242298"
+        },
+        {
+          "$oid": "62deaa8c5c41884db60c2006"
+        },
+        {
+          "$oid": "62ec4cb26f39cedf654da633"
+        }
+      ],
+      "max": "12"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654297355361"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a935494c8207a4adf532f"
+  },
+  "title": "Green Team",
+  "description": "Help our event work towards our zero waste goal by directing attendees to dispose of trash, recycling, and compost appropriately",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a935494c8207a4adf532c"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bcdb1252420c4408778f85"
+        },
+        {
+          "$oid": "62bcdc6452420c4408778f86"
+        },
+        {
+          "$oid": "62bccade62383d9fc1edc9d0"
+        }
+      ],
+      "max": "6"
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a935494c8207a4adf532d"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bccade62383d9fc1edc9d0"
+        },
+        {
+          "$oid": "62c88cfbe6f40049991e20fa"
+        },
+        {
+          "$oid": "62d8b4df06f159a3a8306ccd"
+        }
+      ],
+      "max": "6"
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a935494c8207a4adf532e"
+      },
+      "volunteers": [],
+      "max": "6"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654297428455"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a93aa94c8207a4adf5333"
+  },
+  "title": "Camping",
+  "description": "Assist with checking in campers and helping them park and get to their sites",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T19:30:00.000Z",
+      "end": "2022-08-05T21:30:00.000Z",
+      "_id": {
+        "$oid": "629a93aa94c8207a4adf5330"
+      },
+      "volunteers": [
+        {
+          "$oid": "62be2f6be2fdf5307abcf763"
+        },
+        {
+          "$oid": "62c4d40849e544f5812a2436"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-05T21:30:00.000Z",
+      "end": "2022-08-05T23:30:00.000Z",
+      "_id": {
+        "$oid": "629a93aa94c8207a4adf5331"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c349ee3d2dd5e923f52b23"
+        },
+        {
+          "$oid": "62c81850be93ff0dfd03ace1"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-05T23:30:00.000Z",
+      "end": "2022-08-06T01:30:00.000Z",
+      "_id": {
+        "$oid": "629a93aa94c8207a4adf5332"
+      },
+      "volunteers": [],
+      "max": "2"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654297514153"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629a941594c8207a4adf5338"
+  },
+  "title": "Gear sale",
+  "description": "Help set up and run the gear sale",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-05T20:00:00.000Z",
+      "end": "2022-08-05T22:00:00.000Z",
+      "_id": {
+        "$oid": "629a941594c8207a4adf5336"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5be840c5d254b83b6bb34"
+        },
+        {
+          "$oid": "62d88cf306f159a3a8306ccc"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-05T22:00:00.000Z",
+      "end": "2022-08-06T00:00:00.000Z",
+      "_id": {
+        "$oid": "629a941594c8207a4adf5337"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5be840c5d254b83b6bb34"
+        },
+        {
+          "$oid": "62d88cf306f159a3a8306ccc"
+        }
+      ],
+      "max": "2"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654297621805"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b7fa80404ddae07df278e"
+  },
+  "title": "General Help",
+  "description": "Help launch paddlers and with other tasks",
+  "restrictions": [],
+  "location": "launch",
+  "shifts": [
+    {
+      "start": "2022-08-06T10:30:00.000Z",
+      "end": "2022-08-06T13:30:00.000Z",
+      "_id": {
+        "$oid": "629b7fa80404ddae07df278d"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5adee0c5d254b83b6bb33"
+        },
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62bf3638b0b51447f7175e56"
+        },
+        {
+          "$oid": "62c1ec4a49e544f5812a2434"
+        },
+        {
+          "$oid": "62c49920b0b51447f7175e58"
+        },
+        {
+          "$oid": "62c499b849e544f5812a2435"
+        },
+        {
+          "$oid": "62c71b4be6f40049991e20f8"
+        },
+        {
+          "$oid": "62cec84b4fb74c70ec5bfa61"
+        },
+        {
+          "$oid": "62cf853367f5a83aec0a1303"
+        },
+        {
+          "$oid": "62d1ab348659f2f74d6ad05d"
+        },
+        {
+          "$oid": "62d4d32bc2b3ea21eab43241"
+        },
+        {
+          "$oid": "62d740a19f1c6763cdb9abe4"
+        },
+        "62cd8fbd88c12991131dd2b7",
+        "62be2f6be2fdf5307abcf763",
+        "62e9c52d7b190c1ad006b9ea",
+        "62cf260c67f5a83aec0a1302"
+      ],
+      "max": "16"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654357928289"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b7fcb0404ddae07df2790"
+  },
+  "title": "Registration",
+  "description": "Help with registration",
+  "restrictions": [],
+  "location": "launch",
+  "shifts": [
+    {
+      "start": "2022-08-06T10:30:00.000Z",
+      "end": "2022-08-06T13:00:00.000Z",
+      "_id": {
+        "$oid": "629b7fcb0404ddae07df278f"
+      },
+      "volunteers": [
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        {
+          "$oid": "62bb162862383d9fc1edc9cb"
+        },
+        {
+          "$oid": "62bb168152420c4408778f80"
+        }
+      ],
+      "max": "4"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654357963538"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b800d0404ddae07df2793"
+  },
+  "title": "General Help",
+  "description": "If you are willing to help out wherever needed, choose this role.",
+  "restrictions": [],
+  "location": "midpoint",
+  "shifts": [
+    {
+      "start": "2022-08-06T12:00:00.000Z",
+      "end": "2022-08-06T14:00:00.000Z",
+      "_id": {
+        "$oid": "629b800d0404ddae07df2791"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdcd3eb0b51447f7175e51"
+        },
+        {
+          "$oid": "62bdcdbfb0b51447f7175e52"
+        },
+        {
+          "$oid": "62c4d40849e544f5812a2436"
+        },
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62ce10e967f5a83aec0a12ff"
+        },
+        {
+          "$oid": "62ce117b67f5a83aec0a1300"
+        },
+        "62d03031231a11a9840b5d2e",
+        {
+          "$oid": "62d1541cba122ee2ef5bc8cc"
+        },
+        {
+          "$oid": "62d87d8006f159a3a8306ccb"
+        },
+        {
+          "$oid": "62e7ce47b047918a63929361"
+        },
+        {
+          "$oid": "62e96eec167f6eeff271f6a4"
+        }
+      ],
+      "max": "12"
+    },
+    {
+      "start": "2022-08-06T14:00:00.000Z",
+      "end": "2022-08-06T16:00:00.000Z",
+      "_id": {
+        "$oid": "629b800d0404ddae07df2792"
+      },
+      "volunteers": [
+        "62b5cc100a64ef6ec03eb657",
+        {
+          "$oid": "62bdcd3eb0b51447f7175e51"
+        },
+        {
+          "$oid": "62bdcdbfb0b51447f7175e52"
+        },
+        {
+          "$oid": "62bf707cb0b51447f7175e57"
+        },
+        {
+          "$oid": "62d2afd955152035b009d684"
+        },
+        {
+          "$oid": "62d87d8006f159a3a8306ccb"
+        },
+        "62deaa8c5c41884db60c2006",
+        {
+          "$oid": "62e7ce47b047918a63929361"
+        },
+        {
+          "$oid": "62e8498f7b190c1ad006b9e5"
+        },
+        {
+          "$oid": "62e96eec167f6eeff271f6a4"
+        }
+      ],
+      "max": "12"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358029573"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b80660404ddae07df2797"
+  },
+  "title": "Raffle",
+  "description": "Help sell raffle tickets",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b80660404ddae07df2794"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        },
+        {
+          "$oid": "62bb749562383d9fc1edc9cf"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b80660404ddae07df2795"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        },
+        {
+          "$oid": "62bb749562383d9fc1edc9cf"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b80660404ddae07df2796"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6aee62383d9fc1edc9cd"
+        },
+        {
+          "$oid": "62e2c6c2b047918a6392935f"
+        }
+      ],
+      "max": "2"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358118898"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b80c10404ddae07df279b"
+  },
+  "title": "Beer",
+  "description": "Sell beer",
+  "restrictions": [
+    "Must be over 21"
+  ],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b80c10404ddae07df2798"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bde68452420c4408778f89"
+        },
+        {
+          "$oid": "62c2e27f3d2dd5e923f52b22"
+        },
+        "62c6e82c3d2dd5e923f52b27",
+        {
+          "$oid": "62d5627955152035b009d686"
+        }
+      ],
+      "max": "4"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b80c10404ddae07df2799"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb43ff52420c4408778f82"
+        },
+        {
+          "$oid": "62bb9e93a209e2a4c73a9726"
+        },
+        {
+          "$oid": "62bdf382a209e2a4c73a9727"
+        },
+        {
+          "$oid": "62ebdac756b210bfb8b50f8b"
+        }
+      ],
+      "max": "4"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b80c10404ddae07df279a"
+      },
+      "volunteers": [
+        {
+          "$oid": "62d1ab348659f2f74d6ad05d"
+        },
+        {
+          "$oid": "62d5627955152035b009d686"
+        },
+        {
+          "$oid": "62d5a30f9f1c6763cdb9abde"
+        },
+        {
+          "$oid": "62d5a3469f1c6763cdb9abdf"
+        }
+      ],
+      "max": "4"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358209001"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b81090404ddae07df279f"
+  },
+  "title": "Merch",
+  "description": "Sell Paddlefest merchandise",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b81090404ddae07df279c"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        {
+          "$oid": "62bb746262383d9fc1edc9ce"
+        },
+        {
+          "$oid": "62d096f7ef3adf967fcc7092"
+        }
+      ],
+      "max": "3"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b81090404ddae07df279d"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        {
+          "$oid": "62bb746262383d9fc1edc9ce"
+        },
+        {
+          "$oid": "62d096f7ef3adf967fcc7092"
+        },
+        "62d03a65b3f1451348e8ecb0",
+        "62d039746a5239d428242299"
+      ],
+      "max": "3"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b81090404ddae07df279e"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bb6ab652420c4408778f83"
+        },
+        {
+          "$oid": "62d096f7ef3adf967fcc7092"
+        },
+        {
+          "$oid": "62e51b35b047918a63929360"
+        }
+      ],
+      "max": "3"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358281245"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b815e0404ddae07df27a3"
+  },
+  "title": "Green Team",
+  "description": "Direct attendees to dispose of trash, recycling, and compost appropriately",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b815e0404ddae07df27a0"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfe740319281cf5df9269"
+        },
+        {
+          "$oid": "62e96eec167f6eeff271f6a4"
+        },
+        {
+          "$oid": "62e96f36b047918a63929363"
+        }
+      ],
+      "max": "6"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b815e0404ddae07df27a1"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfe740319281cf5df9269"
+        },
+        "62d1ab348659f2f74d6ad05d",
+        {
+          "$oid": "62e96eec167f6eeff271f6a4"
+        },
+        {
+          "$oid": "62e96f36b047918a63929363"
+        }
+      ],
+      "max": "6"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b815e0404ddae07df27a2"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfe740319281cf5df9269"
+        },
+        {
+          "$oid": "62e96f36b047918a63929363"
+        }
+      ],
+      "max": "6"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358366495"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b81b10404ddae07df27a7"
+  },
+  "title": "General Help",
+  "description": "Help as needed",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b81b10404ddae07df27a4"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b9ee4e0502f98c228635f5"
+        },
+        {
+          "$oid": "62bdb7f0b0b51447f7175e50"
+        },
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62d037696a5239d428242298"
+        },
+        {
+          "$oid": "62d1b7f355152035b009d683"
+        },
+        {
+          "$oid": "62e07509167f6eeff271f69e"
+        },
+        "62e062323b4f0b8c98251adf",
+        "62e061d53b4f0b8c98251ade",
+        "62db52801906de1c4cc8f3a2",
+        "62bdf52a52420c4408778f8a",
+        "62e7dde1b047918a63929362"
+      ],
+      "max": "12"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b81b10404ddae07df27a5"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        {
+          "$oid": "62b9ee4e0502f98c228635f5"
+        },
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62c07ed349e544f5812a2433"
+        },
+        {
+          "$oid": "62d037696a5239d428242298"
+        },
+        {
+          "$oid": "62d1b7f355152035b009d683"
+        },
+        "62d5627955152035b009d686",
+        "62bdf52a52420c4408778f8a",
+        "62c70eda3962061dce9e275e"
+      ],
+      "max": "12"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b81b10404ddae07df27a6"
+      },
+      "volunteers": [
+        {
+          "$oid": "62b5e3cad9a631a04c5ba6c1"
+        },
+        {
+          "$oid": "62b6199bda4dff96795f7ff5"
+        },
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62c07ed349e544f5812a2433"
+        },
+        {
+          "$oid": "62d1b7f355152035b009d683"
+        },
+        {
+          "$oid": "62e96eec167f6eeff271f6a4"
+        },
+        {
+          "$oid": "62e9cadab047918a63929364"
+        },
+        {
+          "$oid": "62ea857b7b190c1ad006b9ec"
+        }
+      ],
+      "max": "12"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358449502"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "629b82100404ddae07df27ad"
+  },
+  "title": "Shuttle Helper",
+  "description": "Help direct paddlers to the shuttle busses",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T13:00:00.000Z",
+      "end": "2022-08-06T15:00:00.000Z",
+      "_id": {
+        "$oid": "629b82100404ddae07df27aa"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfd350319281cf5df9268"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-06T15:00:00.000Z",
+      "end": "2022-08-06T17:00:00.000Z",
+      "_id": {
+        "$oid": "629b82100404ddae07df27ab"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfd350319281cf5df9268"
+        }
+      ],
+      "max": "2"
+    },
+    {
+      "start": "2022-08-06T17:00:00.000Z",
+      "end": "2022-08-06T19:00:00.000Z",
+      "_id": {
+        "$oid": "629b82100404ddae07df27ac"
+      },
+      "volunteers": [
+        {
+          "$oid": "62bdfc96a209e2a4c73a9728"
+        },
+        {
+          "$oid": "62bdfd350319281cf5df9268"
+        }
+      ],
+      "max": "2"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1654358544396"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "62c7131b8b974472424236de"
+  },
+  "title": "Racer Registration",
+  "description": "Help paddlers register for the race",
+  "restrictions": [],
+  "location": "expo",
+  "shifts": [
+    {
+      "start": "2022-08-06T19:00:00.000Z",
+      "end": "2022-08-06T21:00:00.000Z",
+      "_id": {
+        "$oid": "62c7131b8b974472424236db"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c71f5ee6f40049991e20f9"
+        },
+        {
+          "$oid": "62d03039b3f1451348e8ecaf"
+        },
+        {
+          "$oid": "62e3e10c7b190c1ad006b9e1"
+        }
+      ],
+      "max": "4"
+    },
+    {
+      "start": "2022-08-05T21:00:00.000Z",
+      "end": "2022-08-05T23:00:00.000Z",
+      "_id": {
+        "$oid": "62c7131b8b974472424236dc"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c71f5ee6f40049991e20f9"
+        },
+        {
+          "$oid": "62d03039b3f1451348e8ecaf"
+        }
+      ],
+      "max": "4"
+    },
+    {
+      "start": "2022-08-05T23:00:00.000Z",
+      "end": "2022-08-06T01:00:00.000Z",
+      "_id": {
+        "$oid": "62c7131b8b974472424236dd"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c71f5ee6f40049991e20f9"
+        },
+        {
+          "$oid": "62cf76276a5239d428242297"
+        }
+      ],
+      "max": "4"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1657213723922"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "62c714d188c12991131dd2b5"
+  },
+  "title": "Race start line",
+  "description": "Help kick of the race event",
+  "restrictions": [],
+  "location": "launch",
+  "shifts": [
+    {
+      "start": "2022-08-06T10:00:00.000Z",
+      "end": "2022-08-06T13:30:00.000Z",
+      "_id": {
+        "$oid": "62c714d188c12991131dd2b4"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c71f5ee6f40049991e20f9"
+        },
+        {
+          "$oid": "62db15ae7eb7859c159185d1"
+        },
+        {
+          "$oid": "62db443a7eb7859c159185d2"
+        },
+        {
+          "$oid": "62deaa8c5c41884db60c2006"
+        }
+      ],
+      "max": "4"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1657214161373"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "62c71526e6f40049991e20f7"
+  },
+  "title": "Race finish line",
+  "description": "Welcome the racers after their paddle",
+  "restrictions": [],
+  "location": "finishline",
+  "shifts": [
+    {
+      "start": "2022-08-06T11:30:00.000Z",
+      "end": "2022-08-06T14:30:00.000Z",
+      "_id": {
+        "$oid": "62c71526e6f40049991e20f6"
+      },
+      "volunteers": [
+        {
+          "$oid": "62c71f5ee6f40049991e20f9"
+        },
+        {
+          "$oid": "62cf76276a5239d428242297"
+        },
+        {
+          "$oid": "62d6b3b79f1c6763cdb9abe0"
+        },
+        {
+          "$oid": "62e7dd6b7b190c1ad006b9e2"
+        }
+      ],
+      "max": "4"
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1657214246249"
+    }
+  }
+}]

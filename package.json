@@ -9,7 +9,8 @@
 		"migrate:dockerless": "npx prisma migrate dev --name test --force",
 		"test:run:dockerless": "yarn jest -i",
 		"test": "jest --coverage",
-		"lint": "eslint . --ext .js,.ts"
+		"lint": "eslint . --ext .js,.ts",
+		"frontend": "cd app && yarn start"
 	},
 	"keywords": [],
 	"author": "",
@@ -25,8 +26,16 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.8.1",
+		"chalk": "^5.2.0",
+		"classnames": "^2.3.2",
+		"dotenv": "^16.0.3",
 		"eslint-plugin-import": "^2.27.5",
+		"express": "^4.18.2",
+		"inquirer": "^9.1.4",
+		"moment": "^2.29.4",
+		"nanospinner": "^1.1.0",
 		"prettier": "^2.8.3",
+		"sass": "^1.59.3",
 		"uuid": "^9.0.0"
 	},
 	"imports": {
