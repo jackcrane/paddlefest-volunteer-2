@@ -97,5 +97,3 @@ export async function sendEmail(id) {
 	const f = await sgMail.send(msg);
 	console.log('Message sent', f);
 }
-
-sendEmail('0554619e-216c-4db6-8e8b-09fa86f66f2e');
