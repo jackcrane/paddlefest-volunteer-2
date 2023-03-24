@@ -55,7 +55,7 @@ const Page = (props) => {
 			setActivePage(4);
 		}
 
-		let f = await fetch('http://localhost:3100/signup', {
+		let f = await fetch('/signup', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

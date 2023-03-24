@@ -72,7 +72,7 @@ const EventJobs = (props) => {
 		setJobs([]);
 		(async () => {
 			console.log(props.event);
-			let jfetch = await fetch(`http://localhost:3100/jobs?location=${props.event.toLowerCase()}`);
+			let jfetch = await fetch(`/jobs?location=${props.event.toLowerCase()}`);
 			console.log(jfetch.status);
 			if (jfetch.status !== 200) {
 				alert(
