@@ -12,7 +12,8 @@
 		"lint": "eslint . --ext .js,.ts",
 		"frontend": "cd app && yarn start",
 		"backend": "cd api && node index.js",
-		"build": "cd app && yarn && yarn build"
+		"build": "cd app && yarn && yarn build",
+		"g_start": "npx prisma generate && yarn backend"
 	},
 	"keywords": [],
 	"author": "",

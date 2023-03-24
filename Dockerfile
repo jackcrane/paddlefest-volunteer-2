@@ -20,4 +20,4 @@ RUN npx prisma generate
 RUN cd ..
 
 EXPOSE 3100
-CMD [ "yarn", "backend" ]
+CMD [ "yarn", "g_start" ]
