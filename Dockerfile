@@ -6,7 +6,7 @@ RUN apk update \
 COPY . . 
 RUN yarn install
 RUN cd app && yarn install
-RUN npx prisma generate
 RUN yarn build
 EXPOSE 3100
+RUN npx prisma generate
 CMD ["yarn", "backend"]
