@@ -19,5 +19,5 @@ RUN yarn build
 RUN npx prisma generate
 RUN cd ..
 
-EXPOSE 3000
+EXPOSE 3100
 CMD [ "yarn", "backend" ]
