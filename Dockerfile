@@ -1,13 +1,13 @@
 FROM node:18 AS dependencies
 
-WORKDIR /app
+WORKDIR /
 COPY package.json yarn.lock ./
 RUN yarn
 
 FROM node:18 as build
 
-WORKDIR /app
-COPY --from=dependencies /app/node_modules ./node_modules
+WORKDIR /
+COPY --from=dependencies /node_modules ./node_modules
 COPY . .
 
 RUN yarn build
@@ -15,10 +15,10 @@ RUN npx prisma generate
 
 FROM node:18 as deploy
 
-WORKDIR /app
+WORKDIR /
 
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/app/build ./app/build
+COPY --from=build /node_modules ./node_modules
+COPY --from=build /app/build ./build
 
 EXPOSE 3100
 
