@@ -55,7 +55,7 @@ const Page = (props) => {
 			setActivePage(4);
 		}
 
-		let f = await fetch('https://paddlefestbackend.jackcrane.rocks/signup', {
+		let f = await fetch('http://localhost:3100/signup', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -70,8 +70,7 @@ const Page = (props) => {
 		console.log(f.status);
 		if (f.status === 200) {
 			let res = await f.json();
-			document.location.href = '/thanks';
-			alert('Success! Thank you!');
+			document.location.href = '/info/registration/' + res.volunteer.id;
 		} else if (f.status === 409) {
 			alert(
 				'Your email and name are already in our database. If you need to modify or would like to re-register, please contact info@ohioriverpaddlefest.org'
@@ -82,6 +81,10 @@ const Page = (props) => {
 			alert('Something went wrong. Make sure everything is present!');
 			throw new Error(f);
 		}
+	};
+
+	const processSetJobs = (_jobs) => {
+		setJobs(_jobs);
 	};
 
 	return (
@@ -144,7 +147,7 @@ const Page = (props) => {
 						<Dates setValues={(v) => setEvents(v)} />
 					</div>
 					<div style={{ display: activePage == 3 ? 'initial' : 'none' }}>
-						<Jobs events={events} setValues={(v) => setJobs(v)} />
+						<Jobs events={events} handle={(v) => processSetJobs(v)} />
 					</div>
 					<div style={{ display: activePage == 4 ? 'initial' : 'none' }}>
 						<Waiver setValues={(v) => setWaiver(v)} />

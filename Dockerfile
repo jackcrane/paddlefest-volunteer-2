@@ -4,5 +4,8 @@ RUN apk update \
   && apk add bash \
   && rm -rf /var/cache/apk/*
 COPY . . 
-RUN npm install
+RUN yarn install
 RUN npx prisma generate
+RUN yarn build
+EXPOSE 3100
+CMD ["yarn", "backend"]

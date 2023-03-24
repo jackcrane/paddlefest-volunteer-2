@@ -12,17 +12,10 @@ model Volunteers {
   name        String             @db.VarChar(255)
   email       String             @unique @db.VarChar(255)
   phone       String             @db.VarChar(255)
-  shirtSizeId String?            @db.VarChar(36)
-  shirtSize   ShirtSizes?        @relation(fields: [shirtSizeId], references: [id])
+  shirtSize   ShirtSizes?
   referral    String             @db.VarChar(255)
   shifts      VolunteersShifts[]
-}
-
-model ShirtSizes {
-  id         String       @id @default(uuid())
-  name       String       @db.VarChar(56)
-  slug       String       @unique @db.VarChar(8)
-  volunteers Volunteers[]
+  Waiver      Waiver[]
 }
 
 model Locations {
@@ -67,4 +60,35 @@ model VolunteersShifts {
   volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
   shiftId     String     @db.VarChar(36)
   shift       Shifts     @relation(fields: [shiftId], references: [id])
+}
+
+model Waiver {
+  id                    String     @id @default(uuid())
+  volunteerId           String     @db.VarChar(36)
+  volunteer             Volunteers @relation(fields: [volunteerId], references: [id])
+  signed                Boolean
+  signedAt              DateTime
+  type                  WaiverType
+  emergencyContactName  String
+  emergencyContactPhone String
+  emergencyContactEmail String
+  minor__name           String?
+  minor__parentName     String?
+  minor__DOB            DateTime?
+  minor__guardianEmail  String?
+  adult__name           String?
+}
+
+enum WaiverType {
+  ADULT
+  MINOR
+}
+
+enum ShirtSizes {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
 }

@@ -96,7 +96,7 @@ const Waiver = (props) => {
 					one full year of my signature date below.
 					<br />
 					<br />
-					Today's Date: June 18, 2022
+					Today's Date: {moment().format('MMMM Do, YYYY')}
 					<br />
 					<br />
 				</p>

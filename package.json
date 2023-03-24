@@ -10,7 +10,9 @@
 		"test:run:dockerless": "yarn jest -i",
 		"test": "jest --coverage",
 		"lint": "eslint . --ext .js,.ts",
-		"frontend": "cd app && yarn start"
+		"frontend": "cd app && yarn start",
+		"backend": "cd api && node index.js",
+		"build": "cd app && yarn build"
 	},
 	"keywords": [],
 	"author": "",
@@ -26,13 +28,17 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.8.1",
+		"@sendgrid/mail": "^7.7.0",
 		"chalk": "^5.2.0",
 		"classnames": "^2.3.2",
+		"cors": "^2.8.5",
 		"dotenv": "^16.0.3",
 		"eslint-plugin-import": "^2.27.5",
 		"express": "^4.18.2",
+		"handlebars": "^4.7.7",
 		"inquirer": "^9.1.4",
 		"moment": "^2.29.4",
+		"moment-timezone": "^0.5.42",
 		"nanospinner": "^1.1.0",
 		"prettier": "^2.8.3",
 		"sass": "^1.59.3",
