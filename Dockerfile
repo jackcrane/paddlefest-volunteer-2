@@ -17,6 +17,7 @@ COPY . .
 RUN yarn install
 RUN yarn build
 RUN npx prisma generate
+RUN cd ..
 
 EXPOSE 3000
-CMD [ "node", "index.js" ]
+CMD [ "yarn", "backend" ]
