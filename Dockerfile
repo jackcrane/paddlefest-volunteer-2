@@ -1,23 +1,25 @@
-FROM node:16
+FROM node:18 AS dependencies
 
-# Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+FROM node:18 as build
 
-RUN yarn install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
+WORKDIR /app
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
-RUN yarn install
+
 RUN yarn build
 RUN npx prisma generate
-RUN cd ..
+
+FROM node:18 as deploy
+
+WORKDIR /app
+
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/build ./app/build
 
 EXPOSE 3100
-CMD [ "yarn", "g_start" ]
+
+CMD ["yarn", "backend"]
