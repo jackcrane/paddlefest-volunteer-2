@@ -15,4 +15,5 @@ RUN yarn build
 
 EXPOSE 3100
 
-CMD [ "yarn", "backend" ]
+RUN chmod +x ./start.sh
+CMD [ "./start.sh" ]
