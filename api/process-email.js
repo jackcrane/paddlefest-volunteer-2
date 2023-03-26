@@ -3,6 +3,8 @@ import fs from 'fs';
 import { client } from '../util/prisma-client.js';
 import moment from 'moment-timezone';
 import sgMail from '@sendgrid/mail';
+import twilio from 'twilio';
+const twclient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 export async function generateEmail(id) {
 	const src = fs.readFileSync('thanks.html', 'utf8');
@@ -88,7 +90,23 @@ export async function sendEmail(id) {
 		html,
 	};
 	const f = await sgMail.send(msg);
-	console.log('Message sent', f);
+	// console.log('Message sent', f);
+
+	// Text a url to the user
+	await twclient.messages
+		.create({
+			body: `Thanks for volunteering for Paddlefest! If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
+			from: process.env.TWILIO_PHONE,
+			to: volunteer.phone,
+		})
+		.then((message) => console.log(message.sid));
+	await twclient.messages
+		.create({
+			body: `https://volunteer.jackcrane.rocks/info/registration/${volunteer.id}`,
+			from: process.env.TWILIO_PHONE,
+			to: volunteer.phone,
+		})
+		.then((message) => console.log(message.sid));
 }
 
 export async function testEmail() {
