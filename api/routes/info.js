@@ -45,7 +45,6 @@ router.get('/:id', async (req, res) => {
 
 	let jobs = [];
 	volunteer.shifts.forEach((shift) => {
-		console.log(shift);
 		let job = jobs.find((job) => job.id === shift.shift.job.id);
 		if (job) {
 			job.shifts.push({
@@ -79,7 +78,6 @@ router.get('/:id', async (req, res) => {
 	volunteer.waiver = volunteer.Waiver[0].signed;
 	delete volunteer.Waiver;
 
-	console.log(volunteer);
 	res.status(200).json(volunteer);
 });
 

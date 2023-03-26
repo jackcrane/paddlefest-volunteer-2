@@ -56,7 +56,6 @@ router.post('/', async (req, res) => {
 
 	let vol_jobs = await Promise.all(
 		jobs.map(async (job) => {
-			console.log(job);
 			let job_vol = await client.volunteersShifts.create({
 				data: {
 					shift: {
@@ -82,21 +81,3 @@ router.post('/', async (req, res) => {
 });
 
 export default router;
-
-const email_gen = async (volunteerId) => {
-	const volunteer = await client.volunteers.findUnique({
-		where: {
-			id: volunteerId,
-		},
-		include: {
-			waiver: true,
-			shifts: {
-				include: {
-					shift: true,
-				},
-			},
-		},
-	});
-
-	console.log(volunteer);
-};

@@ -30,8 +30,6 @@ export async function generateEmail(id) {
 		},
 	});
 
-	console.log(volunteer);
-
 	const jobs = volunteer.shifts.map((shift) => {
 		return {
 			name: shift.shift.job.name,
@@ -75,8 +73,6 @@ export async function generateEmail(id) {
 	volunteer.jobs = newJobs;
 	delete volunteer.shifts;
 
-	console.log(volunteer);
-
 	const html = template(volunteer);
 	return { html, volunteer };
 	// fs.writeFileSync('test.html', html);
@@ -84,6 +80,7 @@ export async function generateEmail(id) {
 
 export async function sendEmail(id) {
 	const { html, volunteer } = await generateEmail(id);
+	console.log('SENDGRID API KEY', process.env.SENDGRID_API_KEY);
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 	const msg = {
 		to: volunteer.email,

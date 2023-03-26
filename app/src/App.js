@@ -67,7 +67,6 @@ const Page = (props) => {
 			}),
 		});
 		setWorking(false);
-		console.log(f.status);
 		if (f.status === 200) {
 			let res = await f.json();
 			document.location.href = '/info/registration/' + res.volunteer.id;
