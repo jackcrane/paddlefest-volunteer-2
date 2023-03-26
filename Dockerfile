@@ -1,25 +1,20 @@
-FROM node:18 AS dependencies
+FROM node:18
 
-WORKDIR /
-COPY package.json yarn.lock ./
-RUN yarn
+# Create app directory
+WORKDIR /usr/src/app
 
-FROM node:18 as build
+# Install app dependencies
+COPY package*.json ./
 
-WORKDIR /
-COPY --from=dependencies /node_modules ./node_modules
-COPY . .
-
-RUN yarn build
+RUN npm install
 RUN npx prisma generate
 
-FROM node:18 as deploy
-
-WORKDIR /
-
-COPY --from=build /node_modules ./node_modules
-COPY --from=build /app/build ./build
+# Bundle app source
+COPY . .
 
 EXPOSE 3100
 
-CMD ["yarn", "backend"]
+ENV DATABASE_URL="mysql://apps:Guro6297@db.jackcrane.rocks:3306/paddlefest_volunteer"
+ENV SENDGRID_API_KEY="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"
+
+CMD [ "yarn", "backend" ]
