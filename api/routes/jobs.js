@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
 	});
 
 	jobs = jobs.map((job) => {
-		console.log(job);
 		job.shifts = job.shifts.map((shift) => {
 			shift.volunteers = shift.volunteers.length;
 			return shift;

@@ -5,7 +5,6 @@ import { client } from '#util/prisma-client.js';
 import moment from 'moment';
 
 data.forEach(async (job) => {
-	console.log(job.title);
 	const shifts = job.shifts.map((shift) => {
 		return {
 			startTime: moment(shift.start).add(1, 'year').toDate(),

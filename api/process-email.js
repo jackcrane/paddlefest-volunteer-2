@@ -78,7 +78,6 @@ export async function generateEmail(id) {
 
 export async function sendEmail(id) {
 	const { html, volunteer } = await generateEmail(id);
-	console.log('SENDGRID API KEY', process.env.SENDGRID_API_KEY);
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 	const msg = {
 		to: volunteer.email,
