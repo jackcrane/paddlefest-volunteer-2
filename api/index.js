@@ -10,6 +10,11 @@ app.use(cors());
 app.use(express.json());
 app.use('/', router);
 
+app.use((req, res, next) => {
+	console.log(`${req.method} ${req.path} ${req.ip}`);
+	next();
+});
+
 app.use(express.static('../app/build'));
 
 import shifts from './routes/shifts.js';
