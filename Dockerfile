@@ -6,11 +6,11 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-RUN npm install
-RUN npx prisma generate
-
 # Bundle app source
 COPY . .
+
+RUN npm install
+RUN npx prisma generate
 
 EXPOSE 3100
 
