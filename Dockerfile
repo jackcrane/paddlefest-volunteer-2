@@ -11,6 +11,7 @@ COPY . .
 
 RUN npm install
 RUN npx prisma generate
+RUN yarn build
 
 EXPOSE 3100
 
