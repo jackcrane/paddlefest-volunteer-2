@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: jackcranee/paddlefest-service:latest
+          tags: jackcranee/paddlefest-service:0.2.7
