@@ -4,7 +4,6 @@ import { client } from '../util/prisma-client.js';
 import moment from 'moment-timezone';
 import sgMail from '@sendgrid/mail';
 
-// ce9781d4-2130-4bc7-8b53-c66411816b88
 export async function generateEmail(id) {
 	const src = fs.readFileSync('thanks.html', 'utf8');
 	const template = Handlebars.compile(src);
@@ -75,7 +74,6 @@ export async function generateEmail(id) {
 
 	const html = template(volunteer);
 	return { html, volunteer };
-	// fs.writeFileSync('test.html', html);
 }
 
 export async function sendEmail(id) {
@@ -86,10 +84,21 @@ export async function sendEmail(id) {
 		to: volunteer.email,
 		from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
 		replyTo: 'info@ohioriverpaddlefest.org',
-		bcc: ['3jbc22@gmail.com'],
 		fromname: 'Paddlefest Volunteer Coordination',
 		subject: 'Paddlefest Volunteer Confirmation',
 		html,
+	};
+	const f = await sgMail.send(msg);
+	console.log('Message sent', f);
+}
+
+export async function testEmail() {
+	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+	const msg = {
+		to: 'jack@jackcrane.rocks',
+		from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
+		subject: 'Paddlefest Volunteer Confirmation',
+		text: 'Hello world',
 	};
 	const f = await sgMail.send(msg);
 	console.log('Message sent', f);

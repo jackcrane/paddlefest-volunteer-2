@@ -1,5 +1,6 @@
 import express from 'express';
 import { client } from '../../util/prisma-client.js';
+import { testEmail } from '../process-email.js';
 
 const router = express.Router();
 
@@ -10,6 +11,11 @@ router.get('/delete-all', async (req, res) => {
 	await client.waiver.deleteMany();
 	await client.volunteers.deleteMany();
 	res.send('Deleted all volunteers');
+});
+
+router.get('/test-email', async (req, res) => {
+	await testEmail();
+	res.send('Sent test email');
 });
 
 export default router;
