@@ -15,6 +15,14 @@ router.use(
 );
 router.use(express.static('../admin/build'));
 
+// list all files in directory
+router.get('/files', async (req, res) => {
+	const files1 = fs.readdirSync('./');
+	const files2 = fs.readdirSync('../');
+	const files3 = fs.readdirSync('../../');
+	res.json({ './': files1, '../': files2, '../../': files3 });
+});
+
 router.get('/delete-all', async (req, res) => {
 	return; // Disable this route
 	// Delete all volunteers. To do that, we need to delete all waivers and all volunteersShifts
