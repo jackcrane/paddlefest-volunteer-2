@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 const { Header, Content } = Layout;
 const { Option } = Select;
 
-const API_URL = 'http://localhost:3100/admin';
+const API_URL = '/admin';
 
 const App = () => {
 	const [volunteers, setVolunteers] = useState([]);

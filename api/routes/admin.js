@@ -1,18 +1,10 @@
 import express from 'express';
-import expressBasicAuth from 'express-basic-auth';
 import { client } from '../../util/prisma-client.js';
 import { testEmail } from '../process-email.js';
 import fs from 'fs';
 
 const router = express.Router();
 
-// router.use(
-// 	expressBasicAuth({
-// 		users: { admin: 'password' },
-// 		challenge: true,
-// 		realm: 'asdfas',
-// 	})
-// );
 router.use(express.static('../admin/build'));
 
 // list all files in directory
