@@ -15,8 +15,6 @@ router.use(
 );
 router.use(express.static('../admin/build'));
 
-// check if the above folder exists
-
 router.get('/delete-all', async (req, res) => {
 	return; // Disable this route
 	// Delete all volunteers. To do that, we need to delete all waivers and all volunteersShifts
