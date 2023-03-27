@@ -6,13 +6,13 @@ import fs from 'fs';
 
 const router = express.Router();
 
-router.use(
-	expressBasicAuth({
-		users: { admin: 'password' },
-		challenge: true,
-		realm: 'asdfas',
-	})
-);
+// router.use(
+// 	expressBasicAuth({
+// 		users: { admin: 'password' },
+// 		challenge: true,
+// 		realm: 'asdfas',
+// 	})
+// );
 router.use(express.static('../admin/build'));
 
 // list all files in directory
