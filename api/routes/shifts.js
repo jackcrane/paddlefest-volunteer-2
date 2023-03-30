@@ -4,9 +4,13 @@ import { client } from '#util/prisma-client.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	const shifts = await client.shifts.findMany();
+	try {
+		const shifts = await client.shifts.findMany();
 
-	res.json(shifts);
+		res.json(shifts);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
 });
 
 export default router;
