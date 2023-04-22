@@ -6,7 +6,7 @@ const twclient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 const router = express.Router();
 
 router.get('/me', async (req, res) => {
-	const accessToken = req.body.accessToken;
+	const accessToken = req.query.accessToken;
 	let volunteerId;
 	try {
 		const token = await client.accessTokens.findFirst({
