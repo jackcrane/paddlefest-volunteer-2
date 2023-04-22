@@ -16,6 +16,8 @@ model Volunteers {
   referral    String             @db.VarChar(255)
   shifts      VolunteersShifts[]
   Waiver      Waiver[]
+  verifications Verifications[]
+  accessTokens AccessTokens[]
 }
 
 model Locations {
@@ -77,6 +79,22 @@ model Waiver {
   minor__DOB            DateTime?
   minor__guardianEmail  String?
   adult__name           String?
+}
+
+model Verifications {
+  id          String     @id @default(uuid())
+  volunteerId String     @db.VarChar(36)
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+  token       String     @unique
+  expiresAt   DateTime
+  verified    Boolean   @default(false)
+}
+
+model AccessTokens {
+  id         String     @id @default(uuid())
+  volunteerId String     @db.VarChar(36)
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+  expiresAt  DateTime
 }
 
 enum WaiverType {
