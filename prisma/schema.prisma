@@ -18,6 +18,9 @@ model Volunteers {
   Waiver      Waiver[]
   verifications Verifications[]
   accessTokens AccessTokens[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  emailedAt   DateTime?
 }
 
 model Locations {

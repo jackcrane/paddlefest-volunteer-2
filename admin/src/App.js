@@ -1,259 +1,308 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, Table, Tag, Button, Modal, Progress, Input, Select, Drawer } from 'antd';
-import moment from 'moment-timezone';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import moment from 'moment';
+import 'moment-timezone';
+const endpoint = 'http://localhost:3100';
 
-const { Header, Content } = Layout;
-const { Option } = Select;
+const Header = styled.div``;
+const Table = styled.table`
+	border: 1px solid black;
+	border-collapse: collapse;
+`;
+const Tr = styled.tr`
+	border: 1px solid black;
+`;
+const Th = styled.th`
+	border: 1px solid black;
+	padding: 5px;
+`;
+const Td = styled(Th)`
+	font-weight: normal;
+`;
+const Pill = styled.span`
+	display: inline-block;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	margin-right: 5px;
+	font-size: 12px;
+	margin: 2px;
+`;
 
-const API_URL = '/admin';
-
-const App = () => {
-	const [volunteers, setVolunteers] = useState([]);
-	const [jobs, setJobs] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [drawerVisible, setDrawerVisible] = useState(false);
-	const [drawerContent, setDrawerContent] = useState({});
-
-	const [volunteersSearch, setVolunteersSearch] = useState('');
-	const [jobsSearch, setJobsSearch] = useState('');
-	const [shifts, setShifts] = useState([]);
-
-	const [volunteerDrawerVisible, setVolunteerDrawerVisible] = useState(false);
-	const [volunteerDrawerContent, setVolunteerDrawerContent] = useState({});
-
-	const filteredVolunteers = volunteers.filter((volunteer) =>
-		JSON.stringify(volunteer).toLowerCase().includes(volunteersSearch.toLowerCase())
+const ModalBg = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	display: ${(props) => (props.open ? 'block' : 'none')};
+`;
+const ModalContent = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	width: 50%;
+	@media screen and (max-width: 850px) {
+		width: 80%;
+	}
+	height: 80%;
+	overflow-y: auto;
+`;
+const Modal = ({ open, children }) => {
+	return (
+		<ModalBg open={open}>
+			<ModalContent>{children}</ModalContent>
+		</ModalBg>
 	);
-	const filteredJobs = jobs.filter((job) =>
-		JSON.stringify(job).toLowerCase().includes(jobsSearch.toLowerCase())
-	);
+};
+const P = styled.p`
+	margin-top: 5px;
+	margin-bottom: 5px;
+`;
+const Hr = styled.hr`
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+`;
+const H4 = styled.h4`
+	margin-top: 5px;
+	margin-bottom: 5px;
+`;
+const BorderScan = styled.span`
+	border: 1px dashed transparent;
+	transition: 0.1s;
+	border-bottom: 1px dashed #ccc;
+	&:hover {
+		border: 1px dashed #ccc;
+		background-color: #ddd;
+	}
+	cursor: pointer;
+	background-color: #eee;
+	padding: 1px 4px;
+	border-radius: 5px;
+`;
 
-	useEffect(() => {
-		loadData();
-	}, []);
-
-	const loadData = async () => {
-		try {
-			const [volunteersRes, jobsRes, shiftsRes] = await Promise.all([
-				fetch(`${API_URL}/volunteers`),
-				fetch(`${API_URL}/jobs`),
-				fetch(`${API_URL}/shifts`),
-			]);
-			const [volunteersData, jobsData, shiftsData] = await Promise.all([
-				volunteersRes.json(),
-				jobsRes.json(),
-				shiftsRes.json(),
-			]);
-
-			setVolunteers(volunteersData);
-			setJobs(jobsData);
-			setShifts(shiftsData);
-			setLoading(false);
-		} catch (error) {
-			console.error(error);
-			setLoading(false);
+const shiftsByJob = (shifts) => {
+	const jobs = [];
+	shifts.forEach((shift) => {
+		const job = jobs.find((job) => job.id === shift.shift.job.id);
+		if (job) {
+			job.shifts.push(shift);
+		} else {
+			jobs.push({
+				id: shift.shift.job.id,
+				name: shift.shift.job.name,
+				location: shift.shift.job.location,
+				shifts: [shift.shift],
+			});
 		}
-	};
+	});
+	return jobs;
+};
 
-	const displayShifts = (volunteerShifts, shifts, jobs) => {
-		return volunteerShifts.map((volunteerShift) => {
-			const shift = shifts.find((shift) => shift.id === volunteerShift.shiftId);
-			const job = jobs.find((job) => job.id === shift.jobId);
-
-			return (
-				<Tag key={volunteerShift.id}>
-					{job && job.location ? `${job.location.name}: ${job.name}` : 'N/A'} (
-					{moment(shift.startTime).tz('America/New_York').format('h:mm A')} -{' '}
-					{moment(shift.endTime).tz('America/New_York').format('h:mm A')})
-				</Tag>
-			);
-		});
-	};
-
-	const displayJobShifts = (shifts) => {
-		return shifts.map((shift) => (
-			<Tag key={shift.id}>
-				{moment(shift.startTime).tz('America/New_York').format('h:mm A')} -{' '}
-				{moment(shift.endTime).tz('America/New_York').format('h:mm A')} ({shift.volunteers.length}/
-				{shift.capacity})
-			</Tag>
-		));
-	};
-
-	const openDrawer = (record) => {
-		setDrawerContent(record);
-		setDrawerVisible(true);
-	};
-
-	const closeDrawer = () => {
-		setDrawerVisible(false);
-	};
-
-	const openVolunteerDrawer = (record) => {
-		setVolunteerDrawerContent(record);
-		setVolunteerDrawerVisible(true);
-	};
-
-	const closeVolunteerDrawer = () => {
-		setVolunteerDrawerVisible(false);
+const VolunteerModal = ({ modalData, setModalOpen, refreshVolunteerData }) => {
+	const report = (key, value) => {
+		return (
+			<BorderScan
+				onClick={async () => {
+					let newValue = prompt(`Update value '${key}'`, value);
+					if (newValue) {
+						const res = await fetch(`${endpoint}/admin/volunteers/${modalData.id}`, {
+							method: 'PUT',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								id: modalData.id,
+								[key]: newValue,
+							}),
+						});
+						if (res.ok) {
+							refreshVolunteerData();
+							alert('Successfully updated!');
+						} else {
+							alert('Error updating value');
+						}
+					}
+				}}
+			>
+				{value}
+			</BorderScan>
+		);
 	};
 
 	return (
-		<Layout>
-			<Header style={{ color: 'white', fontSize: '24px' }}>Paddlefest volunteer admin panel</Header>
-			<Content style={{ padding: '50px' }}>
-				<h2>Volunteers</h2>
-				{/* Volunteers table */}
-				<Input.Search
-					placeholder="Search Volunteers"
-					style={{ width: 200, marginBottom: 16 }}
-					onChange={(e) => setVolunteersSearch(e.target.value)}
-				/>
-				<Table
-					dataSource={filteredVolunteers}
-					rowKey="id"
-					loading={loading}
-					pagination={{ pageSize: 5 }}
-				>
-					<Table.Column
-						title="Name"
-						dataIndex="name"
-						key="name"
-						render={(name, record) => (
-							<span style={{ cursor: 'pointer' }} onClick={() => openVolunteerDrawer(record)}>
-								{name}
-							</span>
-						)}
-					/>
-					<Table.Column title="Email" dataIndex="email" key="email" />
-					<Table.Column title="Phone" dataIndex="phone" key="phone" />
-					<Table.Column title="Shirt Size" dataIndex="shirtSize" key="shirtSize" />
-					<Table.Column title="Referral" dataIndex="referral" key="referral" />
-					<Table.Column
-						title="Jobs"
-						dataIndex="shifts"
-						key="shifts"
-						render={(volunteerShifts) => displayShifts(volunteerShifts, shifts, jobs)}
-					/>
-				</Table>
-
-				<h2>Jobs</h2>
-				{/* Jobs table */}
-				<Input.Search
-					placeholder="Search Jobs"
-					style={{ width: 200, marginBottom: 16 }}
-					onChange={(e) => setJobsSearch(e.target.value)}
-				/>
-				<Table
-					dataSource={filteredJobs}
-					rowKey="id"
-					loading={loading}
-					pagination={{ pageSize: 5 }}
-					onRow={(record) => ({ onClick: () => openDrawer(record) })}
-				>
-					<Table.Column title="Name" dataIndex="name" key="name" />
-					<Table.Column
-						title="Location"
-						dataIndex="location"
-						key="location"
-						render={(location) => location.name}
-					/>
-					<Table.Column title="Description" dataIndex="description" key="description" />
-					<Table.Column
-						title="Shifts"
-						dataIndex="shifts"
-						key="shifts"
-						render={displayJobShifts}
-						sorter={(a, b) => {
-							const aAverage =
-								a.shifts.reduce((acc, shift) => acc + shift.volunteers.length / shift.capacity, 0) /
-								a.shifts.length;
-							const bAverage =
-								b.shifts.reduce((acc, shift) => acc + shift.volunteers.length / shift.capacity, 0) /
-								b.shifts.length;
-							return aAverage - bAverage;
+		<>
+			<button onClick={() => setModalOpen(false)}>Close</button>
+			<br />
+			<br />
+			{
+				// If the updatedAt is more recent (with a 30 second buffer) updated than the emailedAt, then the volunteer has been updated since the last email. show a button
+				new Date(modalData.updatedAt) - new Date(modalData.emailedAt) > 30000 && (
+					<div
+						style={{
+							borderLeft: '5px solid red',
+							padding: 5,
+							paddingLeft: 10,
+							backgroundColor: 'rgba(255,0,0,0.2)',
 						}}
-					/>
-				</Table>
-
-				{/* Drawer for Job details */}
-				<Drawer title={drawerContent.name} visible={drawerVisible} onClose={closeDrawer}>
-					<h3>Description</h3>
-					<p>{drawerContent.description}</p>
-					<h3>Location</h3>
-					<p>{drawerContent.location?.name}</p>
-					<h3>Shifts</h3>
-					{/* Shifts sub-drawer */}
-					{drawerContent.shifts?.map((shift) => (
-						<div key={shift.id}>
-							<h4>
-								{moment(shift.startTime).tz('America/New_York').format('h:mm A')} -{' '}
-								{moment(shift.endTime).tz('America/New_York').format('h:mm A')} (
-								{shift.volunteers.length}/{shift.capacity})
-							</h4>
-							<p>Volunteers:</p>
-							<ul>
-								{shift.volunteers.map((volunteer) => (
-									<li key={volunteer.id}>{volunteer.name}</li>
-								))}
-							</ul>
-						</div>
+					>
+						<P>
+							The user's profile has been updated since their most recent email. It may be a good
+							idea to send them an updated email for their planning.
+						</P>
+						<button
+							onClick={async () => {
+								const res = await fetch(`${endpoint}/admin/update-volunteer`, {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json',
+									},
+									body: JSON.stringify({
+										id: modalData.id,
+									}),
+								});
+								if (res.ok) {
+									alert('Successfully sent email!');
+								} else {
+									alert('Error sending email');
+									console.log(await res.text());
+								}
+								refreshVolunteerData();
+							}}
+						>
+							Send email
+						</button>
+					</div>
+				)
+			}
+			<h2>Volunteer details</h2>
+			<P>Name: {report('name', modalData.name)}</P>
+			<P>Email: {report('email', modalData.email)}</P>
+			<P>Phone: {report('phone', modalData.phone)}</P>
+			<P>Shirt Size: {report('shirtSize', modalData.shirtSize)}</P>
+			<P>
+				Emergency Contact name:{' '}
+				{report('emergencyContactName', modalData.Waiver[0].emergencyContactName)}
+			</P>
+			<P>
+				Emergency Contact phone:{' '}
+				{report('emergencyContactPhone', modalData.Waiver[0].emergencyContactPhone)}
+			</P>
+			<Hr />
+			<h2>Waiver</h2>
+			<P>Waiver type: {modalData.Waiver[0].type}</P>
+			{modalData.Waiver[0].type === 'MINOR' && (
+				<>
+					<P>Parent name: {modalData.Waiver[0].minor__parentName}</P>
+					<P>Parent email: {modalData.Waiver[0].minor__guardianEmail}</P>
+					<P>Volunteer DOB: {modalData.Waiver[0].minor__DOB}</P>
+				</>
+			)}
+			<P>
+				Signed at:{' '}
+				{moment(modalData.Waiver[0].signedAt).utc().tz('America/New_York').format('MMM Do YYYY')}
+			</P>
+			<Hr />
+			<h2>Shifts</h2>
+			{shiftsByJob(modalData.shifts).map((shift) => (
+				<>
+					<H4>{shift.name}</H4>
+					<P>
+						{shift.location.name} | {shift.location.address}
+					</P>
+					{shift.shifts.map((shift) => (
+						<>
+							<Pill>
+								{moment(shift.startTime).utc().tz('America/New_York').format('h:mm A')} -{' '}
+								{moment(shift.endTime).utc().tz('America/New_York').format('h:mm A')}
+							</Pill>
+						</>
 					))}
-				</Drawer>
-				{/* Volunteer drawer */}
-				<Drawer
-					title={volunteerDrawerContent.name}
-					visible={volunteerDrawerVisible}
-					onClose={closeVolunteerDrawer}
-				>
-					{/* Volunteer details */}
-					<h3>Email</h3>
-					<Input defaultValue={volunteerDrawerContent.email} />
-					<h3>Phone</h3>
-					<Input defaultValue={volunteerDrawerContent.phone} />
-					<h3>Shirt Size</h3>
-					<Select defaultValue={volunteerDrawerContent.shirtSize} style={{ width: '100%' }}>
-						<Option value="S">S</Option>
-						<Option value="M">M</Option>
-						<Option value="L">L</Option>
-						<Option value="XL">XL</Option>
-					</Select>
-					<h3>Referral</h3>
-					<Input defaultValue={volunteerDrawerContent.referral} />
-					<h3>Jobs</h3>
+					<br />
+				</>
+			))}
+			<Hr />
+			<h2>Debug</h2>
+			{JSON.stringify(modalData, null, 2)}
+		</>
+	);
+};
 
-					{/* Jobs sub-drawer */}
-					{volunteerDrawerContent.shifts?.map((volunteerShift) => {
-						const shift = shifts.find((shift) => shift.id === volunteerShift.shiftId);
-						const job = jobs.find((job) => job.id === shift.jobId);
+const VolunteerTable = () => {
+	const [volunteers, setVolunteers] = useState([]);
 
-						return (
-							<Drawer key={volunteerShift.id} title={job?.name} width="80%" closable={false}>
-								{/* Job details */}
-								<h3>Description</h3>
-								<Input defaultValue={job?.description} />
-								<h3>Location</h3>
-								<Input defaultValue={job?.location?.name} />
-								<h3>Shifts</h3>
-								{/* Shifts details */}
-								<h4>
-									{moment(shift.startTime).tz('America/New_York').format('h:mm A')} -{' '}
-									{moment(shift.endTime).tz('America/New_York').format('h:mm A')} (
-									{shift.volunteers.length}/{shift.capacity})
-								</h4>
-								<p>Volunteers:</p>
-								<ul>
-									{shift.volunteers.map((volunteer) => (
-										<li key={volunteer.id}>{volunteer.name}</li>
-									))}
-								</ul>
-							</Drawer>
-						);
-					})}
-					{/* Updated within last 15 minutes */}
-				</Drawer>
-			</Content>
-		</Layout>
+	const refreshVolunteerData = async () => {
+		const res = await fetch(`${endpoint}/admin/volunteers`);
+		const data = await res.json();
+		setVolunteers(data);
+		if (modalData.id) {
+			setModalData(data.find((volunteer) => volunteer.id === modalData.id));
+		}
+	};
+
+	useEffect(() => {
+		(async () => {
+			const res = await fetch(`${endpoint}/admin/volunteers`);
+			const data = await res.json();
+			setVolunteers(data);
+		})();
+	}, []);
+
+	const [modalOpen, setModalOpen] = useState(false);
+	const [modalData, setModalData] = useState(null);
+
+	return (
+		<>
+			<Table>
+				<Tr>
+					<Th>Name</Th>
+					<Th>Email</Th>
+					<Th>Phone</Th>
+					<Th>Shifts</Th>
+				</Tr>
+				{volunteers.map((volunteer) => (
+					<Tr
+						onClick={() => {
+							setModalData(volunteer);
+							setModalOpen(true);
+						}}
+					>
+						<Td>{volunteer.name}</Td>
+						<Td>{volunteer.email}</Td>
+						<Td>{volunteer.phone}</Td>
+						<Td>{volunteer.shifts.length}</Td>
+					</Tr>
+				))}
+			</Table>
+			<Modal open={modalOpen} data-modal-data={JSON.stringify(modalData)}>
+				{modalData && (
+					<VolunteerModal
+						modalData={modalData}
+						setModalOpen={setModalOpen}
+						refreshVolunteerData={refreshVolunteerData}
+					/>
+				)}
+			</Modal>
+		</>
+	);
+};
+
+const App = () => {
+	return (
+		<>
+			<Header>
+				<h1>Header</h1>
+				<VolunteerTable />
+			</Header>
+		</>
 	);
 };
 

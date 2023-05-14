@@ -82,7 +82,7 @@ export async function generateEmail(id) {
 	}
 }
 
-export async function sendEmail(id) {
+export async function sendEmail(id, update = false) {
 	try {
 		const { html, volunteer } = await generateEmail(id);
 		sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -91,7 +91,7 @@ export async function sendEmail(id) {
 			from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
 			replyTo: 'info@ohioriverpaddlefest.org',
 			fromname: 'Paddlefest Volunteer Coordination',
-			subject: 'Paddlefest Volunteer Confirmation',
+			subject: `${update ? '[UPDATED] ' : ''}Paddlefest Volunteer Confirmation`,
 			html,
 		};
 		const f = await sgMail.send(msg);
@@ -100,7 +100,11 @@ export async function sendEmail(id) {
 		// Text a url to the user
 		await twclient.messages
 			.create({
-				body: `Thanks for volunteering for Paddlefest! If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
+				body: `${
+					update
+						? 'Your Paddlefest information has been updated.'
+						: 'Thanks for volunteering for Paddlefest!'
+				} If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
 				from: process.env.TWILIO_PHONE,
 				to: volunteer.phone,
 			})
@@ -112,6 +116,16 @@ export async function sendEmail(id) {
 				to: volunteer.phone,
 			})
 			.then((message) => console.log(message.sid));
+
+		await client.volunteers.update({
+			where: {
+				id: volunteer.id,
+			},
+			data: {
+				emailedAt: new Date(),
+			},
+		});
+		return true;
 	} catch (e) {
 		console.log(e);
 	}
