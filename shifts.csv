@@ -1,0 +1,51 @@
+id,startTime,endTime,capacity,jobId,jobName,jobDescription,locationSlug
+73403c08-8c8a-445a-9041-86f6c18efbfb,8/6/23 13:00,8/6/23 15:00,12,1a8e8c42-ddad-4e23-a392-616292bcb949,General Help,Help as needed,FinishLine
+7f68b37d-a86f-47f2-905f-5b6bbbb29982,8/6/23 11:00,8/6/23 13:00,12,1a8e8c42-ddad-4e23-a392-616292bcb949,General Help,Help as needed,FinishLine
+ade0a67d-6c25-4b22-a6a8-861e86c3ab33,8/6/23 9:00,8/6/23 11:00,12,1a8e8c42-ddad-4e23-a392-616292bcb949,General Help,Help as needed,FinishLine
+561af26d-9564-49b8-8349-c072a09bb0b5,8/6/23 11:00,8/6/23 13:00,2,2e8865f9-755c-41ca-8dc2-538d42cb4cc4,Shuttle Helper,Help direct paddlers to the shuttle busses,FinishLine
+593f07c9-c141-41e6-9633-44591eeb8a56,8/6/23 13:00,8/6/23 15:00,2,2e8865f9-755c-41ca-8dc2-538d42cb4cc4,Shuttle Helper,Help direct paddlers to the shuttle busses,FinishLine
+ae15d22d-98ce-4de0-89a9-360e61325499,8/6/23 9:00,8/6/23 11:00,2,2e8865f9-755c-41ca-8dc2-538d42cb4cc4,Shuttle Helper,Help direct paddlers to the shuttle busses,FinishLine
+492b1f07-4516-4bc7-bcf8-9b455f2b8fca,8/5/23 16:00,8/5/23 18:00,2,3c594907-1f2a-4260-b93c-bd774082b529,Gear sale,Help set up and run the gear sale,Expo
+7feb74c3-486a-4514-bd68-868a91b8b5d2,8/5/23 18:00,8/5/23 20:00,2,3c594907-1f2a-4260-b93c-bd774082b529,Gear sale,Help set up and run the gear sale,Expo
+65423a1c-9556-4f24-8fb8-bc4aa97ee049,8/5/23 19:30,8/5/23 21:30,12,424b38d4-be45-4f91-a00b-5d991d99cada,General Help,"Set up and help out as needed (If you don't care what to do, select this)",Expo
+7799bb3b-d5dc-4da0-8012-27087d52968c,8/5/23 15:30,8/5/23 17:30,12,424b38d4-be45-4f91-a00b-5d991d99cada,General Help,"Set up and help out as needed (If you don't care what to do, select this)",Expo
+9a50109d-20bf-4e1b-a8fe-2e82444f0c35,8/5/23 17:30,8/5/23 19:30,12,424b38d4-be45-4f91-a00b-5d991d99cada,General Help,"Set up and help out as needed (If you don't care what to do, select this)",Expo
+3ee6fc24-ecd3-4eb0-93ce-d2e72bcd0015,8/5/23 17:00,8/5/23 19:00,5,4df79173-b085-4be7-81a0-e469f5710d53,Registration,Help check in paddlers,Expo
+3f5a6069-af0d-4e9a-90e1-d236fc2f2ae7,8/5/23 15:00,8/5/23 17:00,5,4df79173-b085-4be7-81a0-e469f5710d53,Registration,Help check in paddlers,Expo
+a0312566-a18b-4287-bd8d-ab72396f1279,8/5/23 19:00,8/5/23 21:00,5,4df79173-b085-4be7-81a0-e469f5710d53,Registration,Help check in paddlers,Expo
+22be7aab-1ce0-480d-828b-50fd6cdcfcac,8/5/23 19:30,8/5/23 21:30,3,5ce6dc4c-fdf8-4dd6-a08a-204ad05deea5,Raffle,Ticket sales,Expo
+e18e5d93-0017-498a-a3c2-0735e003e3e7,8/5/23 15:30,8/5/23 17:30,3,5ce6dc4c-fdf8-4dd6-a08a-204ad05deea5,Raffle,Ticket sales,Expo
+fb41cd6d-aea8-4410-a931-a4ba9ac02b7c,8/5/23 17:30,8/5/23 19:30,3,5ce6dc4c-fdf8-4dd6-a08a-204ad05deea5,Raffle,Ticket sales,Expo
+cd5422e5-2d6f-430a-a86c-44ff7e43d830,8/6/23 13:00,8/6/23 15:00,4,6574477b-74bc-43d4-ada0-c7274e00227a,Beer,Sell beer,FinishLine
+ef170c3d-a7b1-47c2-926b-16314f0b2c61,8/6/23 9:00,8/6/23 11:00,4,6574477b-74bc-43d4-ada0-c7274e00227a,Beer,Sell beer,FinishLine
+f2896e9b-7d94-492d-8703-6f7a8bc3a747,8/6/23 11:00,8/6/23 13:00,4,6574477b-74bc-43d4-ada0-c7274e00227a,Beer,Sell beer,FinishLine
+2ef00047-e018-4f15-85f9-a3b484e80c9e,8/5/23 15:30,8/5/23 17:30,6,6dd834d9-5450-4063-84b7-3341c7a9e34d,Green Team,"Help our event work towards our zero waste goal by directing attendees to dispose of trash, recycling, and compost appropriately",Expo
+76608f9d-8c49-4b24-bf86-b5ee6bbd2385,8/5/23 19:30,8/5/23 21:30,6,6dd834d9-5450-4063-84b7-3341c7a9e34d,Green Team,"Help our event work towards our zero waste goal by directing attendees to dispose of trash, recycling, and compost appropriately",Expo
+d3cb295a-fc25-40c7-8b90-aa5db4c81917,8/5/23 17:30,8/5/23 19:30,6,6dd834d9-5450-4063-84b7-3341c7a9e34d,Green Team,"Help our event work towards our zero waste goal by directing attendees to dispose of trash, recycling, and compost appropriately",Expo
+35449599-d585-4f67-90e2-41ac93236013,8/5/23 19:30,8/5/23 21:30,8,71db8989-445b-4754-98df-bc0abbcfb6b1,Beer,Beer sales,Expo
+d56ee4bf-1565-4120-8dab-8d196f2d321e,8/5/23 17:30,8/5/23 19:30,8,71db8989-445b-4754-98df-bc0abbcfb6b1,Beer,Beer sales,Expo
+faf5a0b9-4edd-474f-95d4-f23765c1fd7b,8/5/23 15:30,8/5/23 17:30,8,71db8989-445b-4754-98df-bc0abbcfb6b1,Beer,Beer sales,Expo
+7b036eb6-3ed9-4f1e-b0cc-fb1c9c0a3fad,8/6/23 11:00,8/6/23 13:00,3,7971195b-86ba-41df-83c2-842e16c30147,Merch,Sell Paddlefest merchandise,FinishLine
+a5ef8f7e-23e1-4a3e-ac0b-8218586f777b,8/6/23 13:00,8/6/23 15:00,3,7971195b-86ba-41df-83c2-842e16c30147,Merch,Sell Paddlefest merchandise,FinishLine
+cb101f61-d5d6-43ad-ade0-1335e816a2cb,8/6/23 9:00,8/6/23 11:00,3,7971195b-86ba-41df-83c2-842e16c30147,Merch,Sell Paddlefest merchandise,FinishLine
+06772432-e5b2-4e83-971d-a9e045138aa7,8/6/23 7:30,8/6/23 10:30,4,81cc36a7-a036-4f2a-86f7-62f7a70f3e29,Race finish line,Welcome the racers after their paddle,FinishLine
+48c79bb4-e9ce-447d-a16c-abaaeb6df09c,8/6/23 6:30,8/6/23 9:00,4,97eb9307-3b0a-4ea9-a38d-18c0e00459e5,Registration,Help with registration,Launch
+04a7056a-45d6-4bac-ace7-63ef1e8b20b6,8/6/23 10:00,8/6/23 12:00,12,9ba5e811-b613-4768-8da6-dbcfb492fa01,General Help,"If you are willing to help out wherever needed, choose this role.",Midpoint
+1815c724-d602-43f4-a2d5-f67de9e7be42,8/6/23 8:00,8/6/23 10:00,12,9ba5e811-b613-4768-8da6-dbcfb492fa01,General Help,"If you are willing to help out wherever needed, choose this role.",Midpoint
+0373f544-12fb-4b6f-920f-276e92c2d827,8/6/23 6:30,8/6/23 9:30,16,aad88b6c-bac4-41da-a54b-f89862475b0b,General Help,Help launch paddlers and with other tasks,Launch
+4e8f104c-13f6-44d9-8381-167826d86753,8/5/23 19:00,8/5/23 21:00,4,bc90f85a-0815-4bf9-baff-d395ecc94671,Racer Registration,Help paddlers register for the race,Expo
+a745e4d8-f833-4433-b778-28c4c193f07f,8/5/23 17:00,8/5/23 19:00,4,bc90f85a-0815-4bf9-baff-d395ecc94671,Racer Registration,Help paddlers register for the race,Expo
+a804d2d7-4d7d-4fef-8656-a722d554018d,8/6/23 15:00,8/6/23 17:00,4,bc90f85a-0815-4bf9-baff-d395ecc94671,Racer Registration,Help paddlers register for the race,Expo
+3b36f455-9630-48fe-a79d-5ba74809c372,8/5/23 19:30,8/5/23 21:30,3,d0b536ec-1ba9-4f7f-8ebb-dfcbfde2d6b2,Merch,Sell Paddlefest merchandise,Expo
+433c33fe-0f1a-4856-a5bf-782f10f15f01,8/5/23 15:30,8/5/23 17:30,3,d0b536ec-1ba9-4f7f-8ebb-dfcbfde2d6b2,Merch,Sell Paddlefest merchandise,Expo
+f5396d11-101f-4cc5-8503-b794ab8cc312,8/5/23 17:30,8/5/23 19:30,3,d0b536ec-1ba9-4f7f-8ebb-dfcbfde2d6b2,Merch,Sell Paddlefest merchandise,Expo
+8e49fdff-d71d-47f5-9e4d-d25e92ae45de,8/5/23 17:30,8/5/23 19:30,2,d1dafea0-84cf-43fb-a282-5df54cf1f2a6,Camping,Assist with checking in campers and helping them park and get to their sites,Expo
+ce646531-e873-4283-831b-78ea27425f18,8/5/23 19:30,8/5/23 21:30,2,d1dafea0-84cf-43fb-a282-5df54cf1f2a6,Camping,Assist with checking in campers and helping them park and get to their sites,Expo
+e3a89d4f-5052-4a1d-bcb6-21a6cbc96273,8/5/23 15:30,8/5/23 17:30,2,d1dafea0-84cf-43fb-a282-5df54cf1f2a6,Camping,Assist with checking in campers and helping them park and get to their sites,Expo
+c45b7968-df60-45ba-88f6-a805538396ec,8/6/23 6:00,8/6/23 9:30,4,e74d3223-b7d8-4abf-88f9-21a663180932,Race start line,Help kick of the race event,Launch
+0ad48719-7365-4732-9254-1a1ea097bddb,8/6/23 9:00,8/6/23 11:00,6,e9cc3a9c-693d-4f54-bd9a-24a3fc1a263a,Green Team,"Direct attendees to dispose of trash, recycling, and compost appropriately",FinishLine
+268b3906-f8f8-42db-b689-22c58ae66a24,8/6/23 13:00,8/6/23 15:00,6,e9cc3a9c-693d-4f54-bd9a-24a3fc1a263a,Green Team,"Direct attendees to dispose of trash, recycling, and compost appropriately",FinishLine
+684f6fcc-9268-47bb-9b91-030fce94b7f1,8/6/23 11:00,8/6/23 13:00,6,e9cc3a9c-693d-4f54-bd9a-24a3fc1a263a,Green Team,"Direct attendees to dispose of trash, recycling, and compost appropriately",FinishLine
+43ce2e48-aa10-4fc5-9e53-1fd5ba0dd7d8,8/6/23 9:00,8/6/23 11:00,2,f257b953-c5cd-4a56-9025-6ae5aafe0998,Raffle,Help sell raffle tickets,FinishLine
+7affa61d-56d1-49cf-8bb7-574dab01227d,8/6/23 11:00,8/6/23 13:00,2,f257b953-c5cd-4a56-9025-6ae5aafe0998,Raffle,Help sell raffle tickets,FinishLine
+8aaf4410-0e83-4901-a976-b01cc9da51cc,8/6/23 13:00,8/6/23 15:00,2,f257b953-c5cd-4a56-9025-6ae5aafe0998,Raffle,Help sell raffle tickets,FinishLine

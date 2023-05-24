@@ -12,7 +12,7 @@
 		"lint": "eslint . --ext .js,.ts",
 		"frontend": "cd app && yarn start",
 		"backend": "cd api && node index.js",
-		"build": "cd app && yarn && yarn build && cd .. && cd admin && yarn && yarn build && cd ..",
+		"build": "cd app && yarn && yarn build && cd ..",
 		"g_start": "npx prisma generate && yarn backend",
 		"size": "cloc paddlefest-volunteer-2 --exclude-dir=node_modules --exclude-ext json"
 	},
@@ -34,6 +34,7 @@
 		"chalk": "^5.2.0",
 		"classnames": "^2.3.2",
 		"cors": "^2.8.5",
+		"csv-stringify": "^6.4.0",
 		"dotenv": "^16.0.3",
 		"eslint-plugin-import": "^2.27.5",
 		"express": "^4.18.2",
