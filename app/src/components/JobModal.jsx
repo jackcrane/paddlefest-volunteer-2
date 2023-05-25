@@ -39,7 +39,7 @@ const JobModal = ({ open, onClose, _id, openVolunteer, incrementFetchCount }) =>
 		(async () => {
 			if (open) {
 				setWorking(true);
-				let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/jobs/exchange/job/${_id}`);
+				let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/jobs/exchange/job/${_id}`);
 				incrementFetchCount();
 				let volunteer = await f.json();
 				setJob(volunteer);

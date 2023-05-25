@@ -41,7 +41,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 	useEffect(() => {
 		(async () => {
 			setWorking(true);
-			let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/volunteer/${_id}`);
+			let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/volunteer/${_id}`);
 			incrementFetchCount();
 			let volunteer = await f.json();
 			setVolunteer(volunteer);
@@ -53,7 +53,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 	const deleteVolunteer = () => {
 		(async () => {
 			if (window.confirm('Are you sure you want to delete this volunteer? This is irreversible.')) {
-				let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/delete-volunteer`, {
+				let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/delete-volunteer`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 	const handleNotesChange = async (e) => {
 		setChangeSaved('Saving...');
 		setNotes(e.target.value);
-		let f = await fetch('https://paddlefestbackend.jackcrane.rocks/update-notes', {
+		let f = await fetch('https://volunteer.jackcrane.rocks'+'https://paddlefestbackend.jackcrane.rocks/update-notes', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 	};
 
 	const setLeader = async (state) => {
-		let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/set-leader`, {
+		let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/set-leader`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 
 	const updateAOR = (aor) => {
 		(async () => {
-			let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/set-area-of-responsibility`, {
+			let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/set-area-of-responsibility`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 	const [jobSearchModalOpen, setJobSearchModalOpen] = useState(false);
 
 	const handleNewJob = async (job) => {
-		const f = await fetch('https://paddlefestbackend.jackcrane.rocks/add-job', {
+		const f = await fetch('https://volunteer.jackcrane.rocks'+'https://paddlefestbackend.jackcrane.rocks/add-job', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 
 	const handleTextGroupChange = async (e) => {
 		setTextGroup(e.target.value);
-		await fetch('https://paddlefestbackend.jackcrane.rocks/set-text-group', {
+		await fetch('https://volunteer.jackcrane.rocks'+'https://paddlefestbackend.jackcrane.rocks/set-text-group', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const Modal = ({ open, onClose, _id, incrementFetchCount }) => {
 
 	useEffect(() => {
 		(async () => {
-			let f = await fetch('https://paddlefestbackend.jackcrane.rocks/text-groups');
+			let f = await fetch('https://volunteer.jackcrane.rocks'+'https://paddlefestbackend.jackcrane.rocks/text-groups');
 			let textGroups = await f.json();
 			console.log(textGroups);
 			setTextGroups(textGroups);
