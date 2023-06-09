@@ -55,7 +55,7 @@ const Page = (props) => {
 			setActivePage(4);
 		}
 
-		let f = await fetch('https://volunteer.jackcrane.rocks'+'/signup', {
+		let f = await fetch('https://volunteer.jackcrane.rocks' + '/signup', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -69,7 +69,8 @@ const Page = (props) => {
 		setWorking(false);
 		if (f.status === 200) {
 			let res = await f.json();
-			document.location.href = '/info/registration/' + res.volunteer.id;
+			document.location.href =
+				'https://volunteer.jackcrane.rocks/info/registration/' + res.volunteer.id;
 		} else if (f.status === 409) {
 			alert(
 				'Your email and name are already in our database. If you need to modify or would like to re-register, please contact info@ohioriverpaddlefest.org'
