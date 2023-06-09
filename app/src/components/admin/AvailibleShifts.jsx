@@ -7,7 +7,7 @@ export const AvailibleShifts = (props) => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		(async () => {
-			let f = await fetch(
+			let f = await fetch('https://volunteer.jackcrane.rocks'+
 				`https://paddlefestbackend.jackcrane.rocks/jobs/exchange/job/${props.job}`
 			);
 			let shifts = await f.json();

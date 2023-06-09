@@ -7,7 +7,7 @@ export const VolunteerForName = (props) => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		(async () => {
-			let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/volunteer/${props.volunteer}`);
+			let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/volunteer/${props.volunteer}`);
 			let volunteer = await f.json();
 			props.incrementFetchCount && props.incrementFetchCount();
 			if (volunteer && volunteer.name) {

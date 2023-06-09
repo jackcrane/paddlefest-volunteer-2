@@ -9,7 +9,7 @@ export const Shifts = (props) => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		(async () => {
-			let f = await fetch(
+			let f = await fetch('https://volunteer.jackcrane.rocks'+
 				`https://paddlefestbackend.jackcrane.rocks/shifts/${props.volunteer}/${props.job}`
 			);
 			let shifts = await f.json();
@@ -25,7 +25,7 @@ export const Shifts = (props) => {
 		(async () => {
 			if (window.confirm('Are you sure you want to remove this shift from this volunteer?')) {
 				console.log(shift);
-				let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/remove-shift`, {
+				let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/remove-shift`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',

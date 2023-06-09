@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 export const ShiftOption = ({ shift, volunteer, forceUpdate }) => {
 	const submit = async () => {
-		let f = await fetch(`https://paddlefestbackend.jackcrane.rocks/add-shift`, {
+		let f = await fetch('https://volunteer.jackcrane.rocks'+`https://paddlefestbackend.jackcrane.rocks/add-shift`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

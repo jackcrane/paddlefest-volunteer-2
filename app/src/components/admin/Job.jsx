@@ -9,7 +9,7 @@ export const Job = (props) => {
 	useEffect(() => {
 		(async () => {
 			console.log(props.job);
-			let f = await fetch(
+			let f = await fetch('https://volunteer.jackcrane.rocks'+
 				`https://paddlefestbackend.jackcrane.rocks/jobs/exchange/job/${props.job}`
 			);
 			let job = await f.json();

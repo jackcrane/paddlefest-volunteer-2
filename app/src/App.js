@@ -55,7 +55,7 @@ const Page = (props) => {
 			setActivePage(4);
 		}
 
-		let f = await fetch('/signup', {
+		let f = await fetch('https://volunteer.jackcrane.rocks'+'/signup', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
