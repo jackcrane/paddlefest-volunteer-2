@@ -10,7 +10,7 @@ datasource db {
 model Volunteers {
   id          String             @id @default(uuid())
   name        String             @db.VarChar(255)
-  email       String             @unique @db.VarChar(255)
+  email       String             @db.VarChar(255)
   phone       String             @db.VarChar(255)
   shirtSize   ShirtSizes?
   referral    String             @db.VarChar(255)
