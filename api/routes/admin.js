@@ -45,6 +45,75 @@ router.get('/volunteers', async (req, res) => {
 	}
 });
 
+router.get('/volunteers/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		const volunteer = await client.volunteers.findUnique({
+			where: { id },
+			include: {
+				shifts: {
+					include: {
+						shift: {
+							include: {
+								volunteers: true,
+								job: {
+									include: {
+										location: true,
+									},
+								},
+							},
+						},
+					},
+				},
+				Waiver: true,
+			},
+		});
+		res.json(volunteer);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+
+router.put('/volunteer/:volunteerId/shift/:shiftId', async (req, res) => {
+	const { volunteerId, shiftId } = req.params;
+	const { selected } = req.body;
+	try {
+		const volunteer = await client.volunteers.findUnique({
+			where: { id: volunteerId },
+			include: { shifts: true },
+		});
+		const shift = await client.shifts.findUnique({
+			where: { id: shiftId },
+			include: { volunteers: true },
+		});
+		if (selected) {
+			await client.volunteersShifts.create({
+				data: {
+					shiftId,
+					volunteerId,
+				},
+			});
+		} else {
+			const vs = await client.volunteersShifts.findFirst({
+				where: {
+					shiftId,
+					volunteerId,
+				},
+			});
+
+			await client.volunteersShifts.delete({
+				where: {
+					id: vs.id,
+				},
+			});
+		}
+		res.json({ message: 'Success' });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: error.message });
+	}
+});
+
 router.put('/volunteers/:id', async (req, res) => {
 	const { id } = req.params;
 	const { name, email, phone, shirtSize, referral, createdAt, updatedAt, emailedAt, Waiver } =
@@ -151,7 +220,11 @@ router.put('/shifts/:id', async (req, res) => {
 router.get('/jobs', async (req, res) => {
 	try {
 		const jobs = await client.jobs.findMany({
-			include: { shifts: { include: { volunteers: true } }, location: true, restrictions: true },
+			include: {
+				shifts: { include: { volunteers: { include: { volunteer: true } } } },
+				location: true,
+				restrictions: true,
+			},
 		});
 		res.json(jobs);
 	} catch (error) {
