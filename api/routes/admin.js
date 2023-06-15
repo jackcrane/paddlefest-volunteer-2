@@ -47,58 +47,69 @@ router.get('/volunteers', async (req, res) => {
 
 router.put('/volunteers/:id', async (req, res) => {
 	const { id } = req.params;
-	const volunteerData = req.body;
+	const { name, email, phone, shirtSize, referral, createdAt, updatedAt, emailedAt, Waiver } =
+		req.body;
+
 	try {
-		if (volunteerData.emergencyContactName) {
-			const waiverId = (
-				await client.volunteers.findUnique({
-					where: { id },
-					select: { Waiver: true },
-				})
-			).Waiver[0].id;
-			const updatedVolunteer = await client.waiver.update({
-				where: { id: waiverId },
-				data: {
-					emergencyContactName: volunteerData.emergencyContactName,
-				},
-			});
-			await client.volunteers.update({
-				where: { id },
-				data: {
-					updatedAt: new Date(),
-				},
-			});
-			return res.json(updatedVolunteer);
-		} else if (volunteerData.emergencyContactPhone) {
-			const waiverId = (
-				await client.volunteers.findUnique({
-					where: { id },
-					select: { Waiver: true },
-				})
-			).Waiver[0].id;
-			const updatedVolunteer = await client.waiver.update({
-				where: { id: waiverId },
-				data: {
-					emergencyContactPhone: volunteerData.emergencyContactPhone,
-				},
-			});
-			await client.volunteers.update({
-				where: { id },
-				data: {
-					updatedAt: new Date(),
-				},
-			});
-			return res.json(updatedVolunteer);
-		} else {
-			const updatedVolunteer = await client.volunteers.update({
-				where: { id },
-				data: volunteerData,
-			});
-			res.json(updatedVolunteer);
+		const volunteer = await client.volunteers.update({
+			where: { id },
+			data: {
+				name,
+				email,
+				phone,
+				shirtSize,
+				referral,
+				createdAt,
+				updatedAt,
+				emailedAt,
+			},
+		});
+
+		// Update the waiver
+		if (Waiver && Waiver.length > 0) {
+			for (let waiver of Waiver) {
+				await client.waiver.update({
+					where: { id: waiver.id },
+					data: waiver,
+				});
+			}
 		}
+
+		const newVolunteer = await client.volunteers.findUnique({
+			where: { id },
+			include: {
+				shifts: {
+					include: {
+						shift: {
+							include: {
+								volunteers: true,
+								job: {
+									include: {
+										location: true,
+									},
+								},
+							},
+						},
+					},
+				},
+				Waiver: true,
+			},
+		});
+
+		console.log(req.query);
+		if (req.query.sendEmail === 'true') {
+			try {
+				let e = await sendEmail(id, true);
+				console.log(e);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		res.json(newVolunteer);
 	} catch (error) {
-		res.status(500).json({ error: error.message });
 		console.error(error);
+		res.status(500).json({ error: 'Something went wrong' });
 	}
 });
 
@@ -159,7 +170,7 @@ router.put('/jobs/:id', async (req, res) => {
 	}
 });
 
-router.post('/update-volunteer', async (req, res) => {
+router.post('/email-volunteer', async (req, res) => {
 	// Email the volunteer their updated information
 	const { id } = req.body;
 	try {
