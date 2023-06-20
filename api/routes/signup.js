@@ -8,6 +8,7 @@ router.post('/', async (req, res) => {
 	console.log('Signup recieved.');
 	console.log(JSON.stringify(req.body, null, 2));
 	let { basicInfo, jobs, waiver } = req.body;
+	let volunteer;
 	try {
 		// Verify that the jobs that the user selected are not full. If they are, return an error
 		let jobs_full = await Promise.all(
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
 			return;
 		}
 
-		let volunteer = await client.volunteers.create({
+		volunteer = await client.volunteers.create({
 			data: {
 				name: basicInfo.name,
 				email: basicInfo.email,
