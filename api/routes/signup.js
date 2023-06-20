@@ -78,11 +78,15 @@ router.post('/', async (req, res) => {
 		// res.redirect('/info/registration/' + volunteer.id);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
+		console.error("Error in /api/routes/signup.js / router.post('/') main catch block");
+		console.error(error);
 	}
 	try {
 		sendEmail(volunteer.id);
 	} catch (error) {
 		// suppress
+		console.log(`Email to ${volunteer.id} (${volunteer.email}) failed to send)`);
+		console.error(error);
 	}
 });
 
