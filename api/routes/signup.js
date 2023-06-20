@@ -5,6 +5,8 @@ import { generateEmail, sendEmail } from '../process-email.js';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
+	console.log('Signup recieved.');
+	console.log(JSON.stringify(req.body, null, 2));
 	let { basicInfo, jobs, waiver } = req.body;
 	try {
 		// Verify that the jobs that the user selected are not full. If they are, return an error
