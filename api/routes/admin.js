@@ -45,6 +45,19 @@ router.get('/volunteers', async (req, res) => {
 	}
 });
 
+router.delete('/volunteers/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		// First, remove all volunteersShifts and waivers, then delete the volunteer
+		await client.volunteersShifts.deleteMany({ where: { volunteerId: id } });
+		await client.waiver.deleteMany({ where: { volunteerId: id } });
+		await client.volunteers.delete({ where: { id } });
+		res.json({ message: 'Success' });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+
 router.get('/volunteers/:id', async (req, res) => {
 	const { id } = req.params;
 	try {
