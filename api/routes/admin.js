@@ -256,6 +256,66 @@ router.put('/jobs/:id', async (req, res) => {
 	}
 });
 
+router.post('/jobs', async (req, res) => {
+	const jobData = req.body;
+	console.log(jobData);
+	const { shifts, name, description, location } = jobData;
+
+	try {
+		const newJob = await client.jobs.create({
+			data: {
+				name,
+				description,
+				location: {
+					connect: {
+						id: location.id,
+					},
+				},
+			},
+		});
+
+		for (let shift of shifts) {
+			await client.shifts.create({
+				data: {
+					startTime: new Date(shift.startTime),
+					endTime: new Date(shift.endTime),
+					capacity: shift.capacity,
+					job: {
+						connect: {
+							id: newJob.id,
+						},
+					},
+				},
+			});
+		}
+
+		res.json(newJob);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+		console.error(error);
+	}
+});
+
+router.delete('/jobs/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		// First, un-sign up all volunteers from all shifts in this job
+		// Then delete the restrictions
+		// Then delete the shifts
+		// Then delete the job
+		const shifts = await client.shifts.findMany({ where: { jobId: id } });
+		for (let shift of shifts) {
+			await client.volunteersShifts.deleteMany({ where: { shiftId: shift.id } });
+		}
+		await client.shifts.deleteMany({ where: { jobId: id } });
+		await client.restrictions.deleteMany({ where: { jobId: id } });
+		await client.jobs.delete({ where: { id } });
+		res.json({ message: 'Success' });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+
 router.post('/email-volunteer', async (req, res) => {
 	// Email the volunteer their updated information
 	const { id } = req.body;
