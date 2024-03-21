@@ -279,7 +279,7 @@ router.post('/jobs', async (req, res) => {
 				data: {
 					startTime: new Date(shift.startTime),
 					endTime: new Date(shift.endTime),
-					capacity: shift.capacity,
+					capacity: parseInt(shift.capacity),
 					job: {
 						connect: {
 							id: newJob.id,
