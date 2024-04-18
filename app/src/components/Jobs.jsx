@@ -154,7 +154,7 @@ const Job = (props) => {
 												onClick={() => handleClick(shift.id)}
 											>
 												{moment(shift.startTime).minutes() === 37 ? (
-													<p>No times for this job</p>
+													<p>Times to be assigned. You can still sign up.</p>
 												) : (
 													<p>
 														{moment(shift.startTime).format('h:mm a')} -{' '}
