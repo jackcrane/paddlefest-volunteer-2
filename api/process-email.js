@@ -53,9 +53,13 @@ export async function generateEmail(id) {
 					...job.shifts.map((shift) => ({
 						...shift,
 						timeString:
-							moment(shift.startTime).tz('America/New_York').format('hh:mm A') +
-							' - ' +
-							moment(shift.endTime).tz('America/New_York').format('hh:mm A'),
+							moment(shift.startTime).minutes() === 37
+								? 'Times TBA. Keep an eye out for an email with more information.'
+								: `${moment(shift.startTime).tz('America/New_York').format('hh:mm A')} - ${moment(
+										shift.endTime
+								  )
+										.tz('America/New_York')
+										.format('hh:mm A')}`,
 					}))
 				);
 			} else {

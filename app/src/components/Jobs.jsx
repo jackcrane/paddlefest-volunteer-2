@@ -72,7 +72,9 @@ const EventJobs = (props) => {
 		setJobs([]);
 		(async () => {
 			console.log(props.event);
-			let jfetch = await fetch('https://volunteer.jackcrane.rocks'+`/jobs?location=${props.event.toLowerCase()}`);
+			let jfetch = await fetch(
+				'https://volunteer.jackcrane.rocks' + `/jobs?location=${props.event.toLowerCase()}`
+			);
 			console.log(jfetch.status);
 			if (jfetch.status !== 200) {
 				alert(
@@ -151,10 +153,14 @@ const Job = (props) => {
 												)}
 												onClick={() => handleClick(shift.id)}
 											>
-												<p>
-													{moment(shift.startTime).format('h:mm a')} -{' '}
-													{moment(shift.endTime).format('h:mm a')}
-												</p>
+												{moment(shift.startTime).minutes() === 37 ? (
+													<p>No times for this job</p>
+												) : (
+													<p>
+														{moment(shift.startTime).format('h:mm a')} -{' '}
+														{moment(shift.endTime).format('h:mm a')}
+													</p>
+												)}
 											</div>
 										)
 								)}
