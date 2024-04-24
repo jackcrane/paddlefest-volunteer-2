@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { useState, useEffect } from 'react';
 import styles from '../styles/signup.module.scss';
 
@@ -157,8 +157,8 @@ const Job = (props) => {
 													<p>Times to be assigned. You can still sign up.</p>
 												) : (
 													<p>
-														{moment(shift.startTime).format('h:mm a')} -{' '}
-														{moment(shift.endTime).format('h:mm a')}
+														{moment(shift.startTime).tz('Europe/London').format('h:mm a')} -{' '}
+														{moment(shift.endTime).tz('Europe/London').format('h:mm a')}
 													</p>
 												)}
 											</div>
