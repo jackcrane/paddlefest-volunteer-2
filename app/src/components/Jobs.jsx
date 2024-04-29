@@ -157,8 +157,15 @@ const Job = (props) => {
 													<p>Times to be assigned. You can still sign up.</p>
 												) : (
 													<p>
-														{moment(shift.startTime).tz('Europe/London').format('h:mm a')} -{' '}
-														{moment(shift.endTime).tz('Europe/London').format('h:mm a')}
+														{moment(shift.startTime)
+															.tz('Europe/London')
+															.subtract(1, 'hour')
+															.format('h:mm a')}{' '}
+														-{' '}
+														{moment(shift.endTime)
+															.tz('Europe/London')
+															.subtract(1, 'hour')
+															.format('h:mm a')}
 													</p>
 												)}
 											</div>
