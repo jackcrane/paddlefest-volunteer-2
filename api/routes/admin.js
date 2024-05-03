@@ -258,38 +258,62 @@ router.put('/jobs/:id', async (req, res) => {
 
 router.post('/jobs', async (req, res) => {
 	const jobData = req.body;
-	console.log(jobData);
-	const { shifts, name, description, location } = jobData;
+	const { id, shifts, name, description, location } = jobData;
+	const existingJob = await client.jobs.findUnique({ where: { id } });
 
 	try {
-		const newJob = await client.jobs.create({
-			data: {
-				name,
-				description,
-				location: {
-					connect: {
-						id: location.id,
+		let job;
+		if (existingJob) {
+			// Update existing job
+			job = await client.jobs.update({
+				where: { id: id },
+				data: {
+					name,
+					description,
+					location: {
+						connect: {
+							id: location.id,
+						},
 					},
 				},
-			},
-		});
-
-		for (let shift of shifts) {
-			await client.shifts.create({
+			});
+		} else {
+			// Create new job
+			job = await client.jobs.create({
 				data: {
-					startTime: new Date(shift.startTime),
-					endTime: new Date(shift.endTime),
-					capacity: parseInt(shift.capacity),
-					job: {
+					name,
+					description,
+					location: {
 						connect: {
-							id: newJob.id,
+							id: location.id,
 						},
 					},
 				},
 			});
 		}
 
-		res.json(newJob);
+		// Handle shifts for both new and updated jobs
+		for (let shift of shifts) {
+			await client.shifts.upsert({
+				where: { jobId_shiftTime: { jobId: job.id, shiftTime: new Date(shift.startTime) } },
+				update: {
+					endTime: new Date(shift.endTime),
+					capacity: parseInt(shift.capacity),
+				},
+				create: {
+					startTime: new Date(shift.startTime),
+					endTime: new Date(shift.endTime),
+					capacity: parseInt(shift.capacity),
+					job: {
+						connect: {
+							id: job.id,
+						},
+					},
+				},
+			});
+		}
+
+		res.json(job);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 		console.error(error);

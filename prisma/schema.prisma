@@ -44,13 +44,15 @@ model Jobs {
 }
 
 model Shifts {
-  id         String             @id @default(uuid())
+  id         String            @id @default(uuid())
   startTime  DateTime
   endTime    DateTime
   capacity   Int
   volunteers VolunteersShifts[]
-  jobId      String?            @db.VarChar(36)
-  job        Jobs?              @relation(fields: [jobId], references: [id])
+  jobId      String?           @db.VarChar(36)
+  job        Jobs?             @relation(fields: [jobId], references: [id])
+
+  @@unique([jobId, startTime], name: "jobId_shiftTime")
 }
 
 model Restrictions {
