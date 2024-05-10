@@ -295,7 +295,7 @@ router.post('/jobs', async (req, res) => {
 		// Handle shifts for both new and updated jobs
 		for (let shift of shifts) {
 			await client.shifts.upsert({
-				where: { jobId_shiftTime: { jobId: job.id, shiftTime: new Date(shift.startTime) } },
+				where: { jobId_shiftTime: { jobId: job.id, startTime: new Date(shift.startTime) } },
 				update: {
 					endTime: new Date(shift.endTime),
 					capacity: parseInt(shift.capacity),
