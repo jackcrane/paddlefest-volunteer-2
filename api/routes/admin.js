@@ -258,8 +258,13 @@ router.put('/jobs/:id', async (req, res) => {
 
 router.post('/jobs', async (req, res) => {
 	const jobData = req.body;
-	const { id, shifts, name, description, location } = jobData;
-	const existingJob = await client.jobs.findUnique({ where: { id } });
+	let { id, shifts, name, description, location } = jobData;
+	// Make sure all the values are present
+	if (!name) return res.status(400).json({ error: 'Name not supplied' });
+	if (!id) id = 'NONE';
+	const existingJob = await client.jobs.findFirst({
+		where: { id },
+	});
 
 	try {
 		let job;
