@@ -116,4 +116,5 @@ enum ShirtSizes {
   L
   XL
   XXL
+  XXXL
 }
