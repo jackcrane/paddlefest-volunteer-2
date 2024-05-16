@@ -8,21 +8,21 @@ datasource db {
 }
 
 model Volunteers {
-  id          String             @id @default(uuid())
-  contacted Boolean @default(false)
-  notes       String @default("")
-  name        String             @db.VarChar(255)
-  email       String             @db.VarChar(255)
-  phone       String             @db.VarChar(255)
-  shirtSize   ShirtSizes?
-  referral    String             @db.VarChar(255)
-  shifts      VolunteersShifts[]
-  Waiver      Waiver[]
+  id            String             @id @default(uuid())
+  contacted     Boolean            @default(false)
+  notes         String             @default("")
+  name          String             @db.VarChar(255)
+  email         String             @db.VarChar(255)
+  phone         String             @db.VarChar(255)
+  shirtSize     ShirtSizes?
+  referral      String             @db.VarChar(255)
+  shifts        VolunteersShifts[]
+  Waiver        Waiver[]
   verifications Verifications[]
-  accessTokens AccessTokens[]
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-  emailedAt   DateTime?
+  accessTokens  AccessTokens[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  emailedAt     DateTime?
 }
 
 model Locations {
@@ -44,13 +44,13 @@ model Jobs {
 }
 
 model Shifts {
-  id         String            @id @default(uuid())
+  id         String             @id @default(uuid())
   startTime  DateTime
   endTime    DateTime
   capacity   Int
   volunteers VolunteersShifts[]
-  jobId      String?           @db.VarChar(36)
-  job        Jobs?             @relation(fields: [jobId], references: [id])
+  jobId      String?            @db.VarChar(36)
+  job        Jobs?              @relation(fields: [jobId], references: [id])
 
   @@unique([jobId, startTime], name: "jobId_shiftTime")
 }
@@ -94,14 +94,14 @@ model Verifications {
   volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
   token       String     @unique
   expiresAt   DateTime
-  verified    Boolean   @default(false)
+  verified    Boolean    @default(false)
 }
 
 model AccessTokens {
-  id         String     @id @default(uuid())
+  id          String     @id @default(uuid())
   volunteerId String     @db.VarChar(36)
   volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
-  expiresAt  DateTime
+  expiresAt   DateTime
 }
 
 enum WaiverType {
