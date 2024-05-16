@@ -8,21 +8,21 @@ datasource db {
 }
 
 model Volunteers {
-  id            String             @id @default(uuid())
-  contacted     Boolean            @default(false)
-  notes         String             @default("")
-  name          String             @db.VarChar(255)
-  email         String             @db.VarChar(255)
-  phone         String             @db.VarChar(255)
-  shirtSize     ShirtSizes?
-  referral      String             @db.VarChar(255)
+  id            String                @id @default(uuid())
+  name          String                @db.VarChar(255)
+  email         String                @db.VarChar(255)
+  phone         String                @db.VarChar(255)
+  referral      String                @db.VarChar(255)
+  shirtSize     Volunteers_shirtSize?
+  createdAt     DateTime              @default(now())
+  emailedAt     DateTime?
+  updatedAt     DateTime              @updatedAt
+  contacted     Boolean               @default(false)
+  notes         String                @default("")
+  accessTokens  AccessTokens[]
+  verifications Verifications[]
   shifts        VolunteersShifts[]
   Waiver        Waiver[]
-  verifications Verifications[]
-  accessTokens  AccessTokens[]
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  emailedAt     DateTime?
 }
 
 model Locations {
@@ -36,45 +36,52 @@ model Locations {
 model Jobs {
   id           String         @id @default(uuid())
   name         String         @db.VarChar(255)
-  description  String         @db.VarChar(255)
   locationId   String?        @db.VarChar(36)
+  description  String         @db.VarChar(255)
   location     Locations?     @relation(fields: [locationId], references: [id])
-  shifts       Shifts[]
   restrictions Restrictions[]
+  shifts       Shifts[]
+
+  @@index([locationId], map: "Jobs_locationId_fkey")
 }
 
 model Shifts {
   id         String             @id @default(uuid())
   startTime  DateTime
   endTime    DateTime
-  capacity   Int
-  volunteers VolunteersShifts[]
   jobId      String?            @db.VarChar(36)
+  capacity   Int
   job        Jobs?              @relation(fields: [jobId], references: [id])
+  volunteers VolunteersShifts[]
 
   @@unique([jobId, startTime], name: "jobId_shiftTime")
+  @@index([jobId], map: "Shifts_jobId_fkey")
 }
 
 model Restrictions {
   id    String  @id @default(uuid())
   name  String  @db.VarChar(255)
-  slug  String  @unique @db.VarChar(255)
   jobId String? @db.VarChar(36)
+  slug  String  @unique @db.VarChar(255)
   job   Jobs?   @relation(fields: [jobId], references: [id])
+
+  @@index([jobId], map: "Restrictions_jobId_fkey")
 }
 
 model VolunteersShifts {
   id          String     @id @default(uuid())
   volunteerId String     @db.VarChar(36)
-  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
   shiftId     String     @db.VarChar(36)
   shift       Shifts     @relation(fields: [shiftId], references: [id])
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+
+  @@index([shiftId], map: "VolunteersShifts_shiftId_fkey")
+  @@index([volunteerId], map: "VolunteersShifts_volunteerId_fkey")
 }
 
 model Waiver {
   id                    String     @id @default(uuid())
   volunteerId           String     @db.VarChar(36)
-  volunteer             Volunteers @relation(fields: [volunteerId], references: [id])
   signed                Boolean
   signedAt              DateTime
   type                  WaiverType
@@ -86,22 +93,29 @@ model Waiver {
   minor__DOB            DateTime?
   minor__guardianEmail  String?
   adult__name           String?
+  volunteer             Volunteers @relation(fields: [volunteerId], references: [id])
+
+  @@index([volunteerId], map: "Waiver_volunteerId_fkey")
 }
 
 model Verifications {
   id          String     @id @default(uuid())
   volunteerId String     @db.VarChar(36)
-  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
   token       String     @unique
   expiresAt   DateTime
   verified    Boolean    @default(false)
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+
+  @@index([volunteerId], map: "Verifications_volunteerId_fkey")
 }
 
 model AccessTokens {
   id          String     @id @default(uuid())
   volunteerId String     @db.VarChar(36)
-  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
   expiresAt   DateTime
+  volunteer   Volunteers @relation(fields: [volunteerId], references: [id])
+
+  @@index([volunteerId], map: "AccessTokens_volunteerId_fkey")
 }
 
 enum WaiverType {
@@ -109,7 +123,7 @@ enum WaiverType {
   MINOR
 }
 
-enum ShirtSizes {
+enum Volunteers_shirtSize {
   XS
   S
   M
