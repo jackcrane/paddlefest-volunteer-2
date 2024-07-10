@@ -102,24 +102,26 @@ export async function sendEmail(id, update = false) {
 		// console.log('Message sent', f);
 
 		// Text a url to the user
-		await twclient.messages
-			.create({
-				body: `${
-					update
-						? 'Your Paddlefest information has been updated.'
-						: 'Thanks for volunteering for Paddlefest!'
-				} If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
-				from: process.env.TWILIO_PHONE,
-				to: volunteer.phone,
-			})
-			.then((message) => console.log(message.sid));
-		await twclient.messages
-			.create({
-				body: `https://volunteer.jackcrane.rocks/info/registration/${volunteer.id}`,
-				from: process.env.TWILIO_PHONE,
-				to: volunteer.phone,
-			})
-			.then((message) => console.log(message.sid));
+		if (process.env.TEXT_ENABLED === 'true') {
+			await twclient.messages
+				.create({
+					body: `${
+						update
+							? 'Your Paddlefest information has been updated.'
+							: 'Thanks for volunteering for Paddlefest!'
+					} If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
+					from: process.env.TWILIO_PHONE,
+					to: volunteer.phone,
+				})
+				.then((message) => console.log(message.sid));
+			await twclient.messages
+				.create({
+					body: `https://volunteer.jackcrane.rocks/info/registration/${volunteer.id}`,
+					from: process.env.TWILIO_PHONE,
+					to: volunteer.phone,
+				})
+				.then((message) => console.log(message.sid));
+		}
 
 		await client.volunteers.update({
 			where: {
