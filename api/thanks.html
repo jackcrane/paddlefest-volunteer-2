@@ -55,6 +55,14 @@
 				font-size: 12px;
 				text-align: justify;
 			}
+			.callOut {
+				background-color: #f8d7da;
+				color: #721c24 !important;
+				padding: 20px;
+				border-radius: 5px;
+				margin-bottom: 20px;
+				border: 1px solid #721c24;
+			}
 		</style>
 
 		<div class="body">
@@ -91,10 +99,10 @@
 			{{#each jobs}}
 			<job>
 				<h2 class="jobtitle">{{this.name}}</h2>
-				<p>{{this.location.name}} | {{this.location.address}}</p>
-				<!-- {{#each this.shifts}}
+				<p>{{this.location.name}} | {{this.location.address}} | {{ this.day }}</p>
+				{{#each this.shifts}}
 				<p class="shift">{{timeString}}</p>
-				{{/each}} -->
+				{{/each}}
 			</job>
 			{{/each}}
 			<hr />

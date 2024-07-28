@@ -34,8 +34,10 @@ export async function generateEmail(id) {
 
 		const jobs = volunteer.shifts.map((shift) => {
 			return {
+				id: shift.shift.job.id,
 				name: shift.shift.job.name,
 				location: shift.shift.job.location,
+				day: shift.shift.job.location.slug === 'Expo' ? 'Friday 8/2' : 'Saturday 8/3',
 				shifts: [
 					{
 						startTime: shift.shift.startTime,
@@ -45,9 +47,11 @@ export async function generateEmail(id) {
 			};
 		});
 
+		const tz_offset = 4;
+
 		const newJobs = [];
 		jobs.forEach((job) => {
-			const existingJob = newJobs.find((newJob) => newJob.name === job.name);
+			const existingJob = newJobs.find((newJob) => newJob.id === job.id);
 			if (existingJob) {
 				existingJob.shifts.push(
 					...job.shifts.map((shift) => ({
@@ -55,11 +59,11 @@ export async function generateEmail(id) {
 						timeString:
 							moment(shift.startTime).minutes() === 37
 								? 'Times TBA. Keep an eye out for an email with more information.'
-								: `${moment(shift.startTime).tz('America/New_York').format('hh:mm A')} - ${moment(
+								: `${moment(shift.startTime).add(tz_offset, 'hours').format('h:mm A')} - ${moment(
 										shift.endTime
 								  )
-										.tz('America/New_York')
-										.format('hh:mm A')}`,
+										.add(tz_offset, 'hours')
+										.format('h:mm A')}`,
 					}))
 				);
 			} else {
@@ -68,15 +72,27 @@ export async function generateEmail(id) {
 					shifts: job.shifts.map((shift) => ({
 						...shift,
 						timeString:
-							moment(shift.startTime).tz('America/New_York').format('hh:mm A') +
+							moment(shift.startTime).add(tz_offset, 'hours').format('h:mm A') +
 							' - ' +
-							moment(shift.endTime).tz('America/New_York').format('hh:mm A'),
+							moment(shift.endTime).add(tz_offset, 'hours').format('h:mm A'),
 					})),
 				});
 			}
 		});
 
-		volunteer.jobs = newJobs;
+		// Sort the shifts by start time
+		const sortedJobs = newJobs.map((job) => {
+			return {
+				...job,
+				shifts: job.shifts.sort((a, b) => {
+					if (moment(a.startTime).isBefore(moment(b.startTime))) return -1;
+					if (moment(a.startTime).isAfter(moment(b.startTime))) return 1;
+					return 0;
+				}),
+			};
+		});
+
+		volunteer.jobs = sortedJobs;
 		delete volunteer.shifts;
 
 		const html = template(volunteer);
@@ -95,7 +111,7 @@ export async function sendEmail(id, update = false) {
 			from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
 			replyTo: 'info@ohioriverpaddlefest.org',
 			fromname: 'Paddlefest Volunteer Coordination',
-			subject: `${update ? '[UPDATED] ' : ''}Paddlefest Volunteer Confirmation`,
+			subject: `${update ? '[UPDATED] ' : '[FIXED] '}Paddlefest Volunteer Confirmation`,
 			html,
 		};
 		const f = await sgMail.send(msg);
@@ -133,7 +149,8 @@ export async function sendEmail(id, update = false) {
 		});
 		return true;
 	} catch (e) {
-		console.log(e);
+		// console.log(e);
+		throw new Error(e);
 	}
 }
 
@@ -148,3 +165,36 @@ export async function testEmail() {
 	const f = await sgMail.send(msg);
 	console.log('Message sent', f);
 }
+
+// async function emailEveryone() {
+// 	const volunteers = await client.volunteers.findMany({
+// 		where: {
+// 			id: {
+// 				in: notYetSent,
+// 			},
+// 		},
+// 	});
+// 	let failures = [];
+// 	for (const volunteer of volunteers) {
+// 		console.log(volunteer.id, volunteer.name);
+// 		try {
+// 			await sendEmail(volunteer.id);
+// 			console.log('Sent', volunteer.id, volunteer.name);
+// 		} catch (error) {
+// 			failures.push(volunteer.id);
+// 			console.log('Failed', volunteer.id, volunteer.name);
+// 		}
+// 	}
+// 	console.log(failures);
+// }
+// emailEveryone();
+
+// async function test() {
+// 	try {
+// 		await sendEmail('75f2c683-190f-4ade-a809-459cfbdd7c16');
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }
+
+// test();

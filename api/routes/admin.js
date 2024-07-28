@@ -356,4 +356,30 @@ router.post('/email-volunteer', async (req, res) => {
 	}
 });
 
+// router.post('/email-all-volunteers', async (req, res) => {
+// 	try {
+// 		const volunteers = await client.volunteers.findMany({});
+// 		const successfulEmails = [];
+// 		const failedEmails = [];
+// 		for (let volunteer of volunteers) {
+// 			console.log(volunteer.id, volunteer.name);
+// 			try {
+// 				await sendEmail(volunteer.id, true);
+// 				successfulEmails.push({ email: volunteer.email, id: volunteer.id });
+// 			} catch (error) {
+// 				console.log(error);
+// 				failedEmails.push({ email: volunteer.email, id: volunteer.id });
+// 			}
+// 		}
+// 		res.json({
+// 			message: 'Emails sent',
+// 			allSuccess: failedEmails.length == 0,
+// 			successfulEmails,
+// 			failedEmails,
+// 		});
+// 	} catch (error) {
+// 		res.status(500).json({ error: error.message });
+// 	}
+// });
+
 export default router;
