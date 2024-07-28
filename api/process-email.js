@@ -47,7 +47,7 @@ export async function generateEmail(id) {
 			};
 		});
 
-		const tz_offset = 4;
+		const tz_offset = 0;
 
 		const newJobs = [];
 		jobs.forEach((job) => {
