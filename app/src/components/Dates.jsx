@@ -62,22 +62,22 @@ const Dates = (props) => {
 			</p>
 			<div className={styles.options}>
 				<Option checked={outdoorsForAll} onLocalChange={() => setOutdoorsForAll(!outdoorsForAll)}>
-					<p>Friday night (August 2nd)</p>
+					<p>Friday night (August 1nd)</p>
 					<p className={styles.bigdate}>Outdoors for All Expo</p>
 					<p>Schmidt Recreation Complex</p>
 				</Option>
 				<Option checked={launch} onLocalChange={() => setLaunch(!launch)}>
-					<p>Saturday early morning (August 3rd)</p>
+					<p>Saturday early morning (August 2rd)</p>
 					<p className={styles.bigdate}>Paddlefest Launch</p>
 					<p>Schmidt Recreation Complex</p>
 				</Option>
 				<Option checked={midPoint} onLocalChange={() => setMidPoint(!midPoint)}>
-					<p>Saturday day (August 3rd)</p>
+					<p>Saturday day (August 2rd)</p>
 					<p className={styles.bigdate}>4.5 Mile Finish Line / 9.0 Mile Midpoint</p>
 					<p>Public Landing (downtown)</p>
 				</Option>
 				<Option checked={finishLine} onLocalChange={() => setFinishLine(!finishLine)}>
-					<p>Saturday day (August 3rd)</p>
+					<p>Saturday day (August 2rd)</p>
 					<p className={styles.bigdate}>9.0 Mile Finish Line Festival</p>
 					<p>Gilday Park</p>
 				</Option>
