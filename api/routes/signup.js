@@ -84,6 +84,7 @@ router.post('/', async (req, res) => {
 		console.error("Error in /api/routes/signup.js / router.post('/') main catch block");
 		console.error(error);
 	}
+
 	// try {
 	// 	sendEmail(volunteer.id);
 	// } catch (error) {
