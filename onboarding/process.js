@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 import ora from 'ora';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '.prisma/client';
 import moment from 'moment-timezone';
 
 const prisma = new PrismaClient();
