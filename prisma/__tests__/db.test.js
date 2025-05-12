@@ -1,4 +1,4 @@
-import { PrismaClient } from '.prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { RESTRICTION, SHIFT, SHIRT_SIZE, VOLUNTEER } from '../../test-utils/constants';
 import { validate } from 'uuid';
 
