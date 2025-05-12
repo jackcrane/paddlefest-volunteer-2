@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+console.log('Hello World');
+
 import express from 'express';
 const app = express();
 import ws from 'express-ws';
