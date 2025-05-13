@@ -47,7 +47,7 @@ export async function generateEmail(id) {
 			};
 		});
 
-		const tz_offset = 4;
+		const tz_offset = new Date().getTimezoneOffset() / 60;
 
 		const newJobs = [];
 		jobs.forEach((job) => {
