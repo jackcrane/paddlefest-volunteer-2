@@ -3,8 +3,8 @@ import fs from 'fs';
 import { client } from '../util/prisma-client.js';
 import moment from 'moment-timezone';
 import sgMail from '@sendgrid/mail';
-import twilio from 'twilio';
-const twclient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+import { ServerClient } from 'postmark';
+const postmarkClient = new ServerClient(process.env.POSTMARK_API_TOKEN);
 
 export async function generateEmail(id) {
 	try {
@@ -47,7 +47,7 @@ export async function generateEmail(id) {
 			};
 		});
 
-		const tz_offset = 0;
+		const tz_offset = 4;
 
 		const newJobs = [];
 		jobs.forEach((job) => {
@@ -102,69 +102,30 @@ export async function generateEmail(id) {
 	}
 }
 
-export async function sendEmail(id, update = false) {
+export const sendEmail = async (id, update = false) => {
 	try {
 		const { html, volunteer } = await generateEmail(id);
-		sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-		const msg = {
-			to: volunteer.email,
-			from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
-			replyTo: 'info@ohioriverpaddlefest.org',
-			fromname: 'Paddlefest Volunteer Coordination',
-			subject: `${update ? '[UPDATED] ' : '[FIXED] '}Paddlefest Volunteer Confirmation`,
-			html,
-		};
-		const f = await sgMail.send(msg);
-		// console.log('Message sent', f);
+		const subject = `${update ? '[UPDATED] ' : ''}Paddlefest Volunteer Confirmation`;
 
-		// Text a url to the user
-		if (process.env.TEXT_ENABLED === 'true') {
-			await twclient.messages
-				.create({
-					body: `${
-						update
-							? 'Your Paddlefest information has been updated.'
-							: 'Thanks for volunteering for Paddlefest!'
-					} If you have any questions or issues, please feel free to contact us at info@ohioriverpaddlefest.org. You can also view your information at: `,
-					from: process.env.TWILIO_PHONE,
-					to: volunteer.phone,
-				})
-				.then((message) => console.log(message.sid));
-			await twclient.messages
-				.create({
-					body: `https://volunteer.jackcrane.rocks/info/registration/${volunteer.id}`,
-					from: process.env.TWILIO_PHONE,
-					to: volunteer.phone,
-				})
-				.then((message) => console.log(message.sid));
-		}
+		const em = await postmarkClient.sendEmail({
+			From: 'Paddlefest Volunteer Coordination <volunteer@jackcrane.rocks>',
+			To: volunteer.email,
+			Subject: subject,
+			HtmlBody: html,
+			ReplyTo: 'info@ohioriverpaddlefest.org',
+		});
+		console.log(em);
 
 		await client.volunteers.update({
-			where: {
-				id: volunteer.id,
-			},
-			data: {
-				emailedAt: new Date(),
-			},
+			where: { id: volunteer.id },
+			data: { emailedAt: new Date() },
 		});
-		return true;
-	} catch (e) {
-		// console.log(e);
-		throw new Error(e);
-	}
-}
 
-export async function testEmail() {
-	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-	const msg = {
-		to: 'jack@jackcrane.rocks',
-		from: { email: 'volunteer@jackcrane.rocks', name: 'Paddlefest Volunteer Coordination' },
-		subject: 'Paddlefest Volunteer Confirmation',
-		text: 'Hello world',
-	};
-	const f = await sgMail.send(msg);
-	console.log('Message sent', f);
-}
+		return true;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
 
 // async function emailEveryone() {
 // 	const volunteers = await client.volunteers.findMany({
@@ -189,12 +150,12 @@ export async function testEmail() {
 // }
 // emailEveryone();
 
-// async function test() {
-// 	try {
-// 		await sendEmail('75f2c683-190f-4ade-a809-459cfbdd7c16');
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }
+async function test() {
+	try {
+		await sendEmail('aeed74d3-ead8-4910-a823-c7e4c571f1d9');
+	} catch (error) {
+		console.log(error);
+	}
+}
 
-// test();
+test();
