@@ -85,13 +85,13 @@ router.post('/', async (req, res) => {
 		console.error(error);
 	}
 
-	// try {
-	// 	sendEmail(volunteer.id);
-	// } catch (error) {
-	// 	// suppress
-	// 	console.log(`Email to ${volunteer.id} (${volunteer.email}) failed to send)`);
-	// 	console.error(error);
-	// }
+	try {
+		sendEmail(volunteer.id);
+	} catch (error) {
+		// suppress
+		console.log(`Email to ${volunteer.id} (${volunteer.email}) failed to send)`);
+		console.error(error);
+	}
 });
 
 export default router;
