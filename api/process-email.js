@@ -37,7 +37,7 @@ export async function generateEmail(id) {
 				id: shift.shift.job.id,
 				name: shift.shift.job.name,
 				location: shift.shift.job.location,
-				day: shift.shift.job.location.slug === 'Expo' ? 'Friday 8/2' : 'Saturday 8/3',
+				day: shift.shift.job.location.slug === 'Expo' ? 'Friday 8/1' : 'Saturday 8/2',
 				shifts: [
 					{
 						startTime: shift.shift.startTime,
